@@ -7,4 +7,5 @@ app = Flask(__name__)
 def home():
   pagename = "OpenShebang Home"
   username = 'Dion'
-  return render_template('index.html', pagename=pagename, username=username)
+  companyname = 'uOnline'
+  return render_template('index.html', pagename=pagename, username=username, companyname=companyname)
