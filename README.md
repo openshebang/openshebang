@@ -10,6 +10,6 @@ This is the framework for OpenShebang, the Open CMS, LMS and the whole Shebang.
 
 ## Used - Tutorials
 
-* [Courses by Miguel Grinberg](https://courses.miguelgrinberg.com/courses/enrolled/336779)
+* [The New and Improved Flask Mega-Tutorial - Miguel Grinberg](https://courses.miguelgrinberg.com/courses/enrolled/336779)
 * [Tutorial: how to build a simple admin dashboard interface using Bootstrap 5 - Themesberg Blog](https://themesberg.com/blog/bootstrap/simple-bootstrap-5-dashboard-tutorial)
 
