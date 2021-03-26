@@ -7,11 +7,11 @@
     <title>{{ pagename }}</title>
     <link rel="stylesheet"
         href="{{ url_for('static', filename='vendor/bootstrap-5.0.0-beta3-dist/css/bootstrap.css') }} ">
-    <link rel="stylesheet"
-        href="{{ url_for('static', filename='css/my_sidebar.css') }} ">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/my_sidebar.css') }} ">
     <style>
         #sidebar {
-            min-height: 100vh; /* fill the whole sidebar until the bottom of the screen */
+            min-height: 100vh;
+            /* fill the whole sidebar until the bottom of the screen */
         }
     </style>
 </head>
@@ -29,12 +29,12 @@
             </button>
         </div>
         <div class="col-12 col-md-4 col-lg-2">
-                  <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
         </div>
-        
+
         <div class="col-12 col-md-5 col-lg-8 d-flex align-items-center justify-content-md-end mt-3 mt-md-0">
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
@@ -145,65 +145,11 @@
                         <li class="breadcrumb-item active" aria-current="page">Overview</li>
                     </ol>
                 </nav>
-                <h1 class="h2">Dashboard</h1>
-                <p>This is the homepage of a simple admin interface which is part of a tutorial written on Themesberg
-                </p>
+>
 
-                <!-- some bootstrap cards -->
-                <div class="card">
-                    <h5 class="card-header">Customers</h5>
-                    <div class="card-body">
-                        <h5 class="card-title">345k</h5>
-                        <p class="card-text">Feb 1 - Apr 1, United States</p>
-                        <p class="card-text text-success">18.2% increase since last month</p>
-                    </div>
-                </div>
+                {% block content %}
+                {% endblock content %}
 
-                <!-- some more bootstrap cards in a row -->
-
-
-                <div class="row my-4">
-                    <div class="col-12 col-md-6 col-lg-3 mb-4 mb-lg-0">
-                        <div class="card">
-                            <h5 class="card-header">Customers</h5>
-                            <div class="card-body">
-                                <h5 class="card-title">345k</h5>
-                                <p class="card-text">Feb 1 - Apr 1, United States</p>
-                                <p class="card-text text-success">18.2% increase since last month</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
-                        <div class="card">
-                            <h5 class="card-header">Revenue</h5>
-                            <div class="card-body">
-                                <h5 class="card-title">$2.4k</h5>
-                                <p class="card-text">Feb 1 - Apr 1, United States</p>
-                                <p class="card-text text-success">4.6% increase since last month</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
-                        <div class="card">
-                            <h5 class="card-header">Purchases</h5>
-                            <div class="card-body">
-                                <h5 class="card-title">43</h5>
-                                <p class="card-text">Feb 1 - Apr 1, United States</p>
-                                <p class="card-text text-danger">2.6% decrease since last month</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
-                        <div class="card">
-                            <h5 class="card-header">Traffic</h5>
-                            <div class="card-body">
-                                <h5 class="card-title">64k</h5>
-                                <p class="card-text">Feb 1 - Apr 1, United States</p>
-                                <p class="card-text text-success">2.5% increase since last month</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
 
 
