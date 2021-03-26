@@ -1,10 +1,51 @@
 {% extends 'base-admin.html' %}
 
 {% block content %}
-                </nav>
+                
                 <h1 class="h2">Dashboard</h1>
                 <p>This is the homepage of a simple admin interface which is part of a tutorial written on Themesberg
                 </p>
+
+                <h1>HEY ROGER</h1>
+
+                {% for post in posts %}
+                <div class="card my-4">
+                    <h5 class="card-header">{{ post.author.username }}</h5>
+                    <div class="card-body">
+                        <h5 class="card-title">TITEL</h5>
+                        <p class="card-text">Feb 1 - Apr 1, United States</p>
+                        <p class="card-text text-success">{{ post.body }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+
+                
+
+
+
+
+
+<hr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                 <!-- some bootstrap cards -->
                 <div class="card">
