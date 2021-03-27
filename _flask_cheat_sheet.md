@@ -38,7 +38,7 @@ SQLAlchemy gebruikt een snake-case. Dus een AdresEnTelefoon Classe wordt een adr
 Terugdraaien van een database upgrdade:
 
 $ `flask db downgrade`
-
+k
 # Flask shell
 
 fromwerkzeug.securityimportgenerate_password_hash, check_password_hash
