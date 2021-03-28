@@ -1,0 +1,13 @@
+{% extends 'base-admin.html' %}
+
+{% block content %}
+
+Hier de F1 teams!
+
+{% for team in teams %}
+    {{ team.teamname }}
+{% endfor %}
+
+
+
+{% endblock content %}

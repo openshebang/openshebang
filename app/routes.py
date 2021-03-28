@@ -7,12 +7,22 @@ from app import app
 from app import db
 from app.forms import LoginForm
 from app.forms import RegistrationForm
+from app.forms import EditProfileForm
 from app.models import User
 from flask_login import current_user
 from flask_login import login_user
 from flask_login import logout_user
 from flask_login import login_required # Dit is voor de decoratr @app.required
 from werkzeug.urls import url_parse
+from app.models import F1Teams # Nu kan je met de data uit de database werken.
+from datetime import datetime
+
+@app.before_request # This applies to any request, so you only have to write this once.
+def before_request():
+  if current_user.is_authenticated:
+    current_user.last_seen = datetime.utcnow() # This will be a long datetime string
+    db.session.commit()
+
 
 @app.route('/')
 @app.route('/index')
@@ -73,3 +83,36 @@ def register():
     flash('You are now a new registered user!')
     return redirect(url_for('login'))
   return render_template('register.html', title='Register', form=form)
+
+@app.route('/f1')
+def f1():
+  teams = F1Teams.query.all()
+  return render_template('f1.html', teams=teams)
+
+@app.route('/user/<username>')
+@login_required
+def user(username):
+  user = User.query.filter_by(username=username).first_or_404() # A 404 error message will be sent if the user is not found in the database.
+  posts = [
+    {'author': user, 'body': 'Test post # 1'},
+    {'author': user, 'body': 'Test post # 2'},
+    {'author': user, 'body': 'Test post # 3'},
+  ]
+  return render_template('user.html', user=user, posts=posts)
+
+@app.route('/edit_profile', methods=['GET', 'POST'])
+@login_required
+def edit_profile():
+  form = EditProfileForm()
+  if form.validate_on_submit():
+    current_user.username = form.username.data # The latter is the data that is entered in the html form by the user.
+    current_user.about_me = form.about_me.data # The latter is the data that is entered in the html form by the user.
+    db.session.commit()
+    flash('Your changes has been submitted')
+    return redirect(url_for('edit_profile'))
+  # This will propagate all the information form the existing database
+  elif request.method == 'GET': # This is a 'GET'-method, so when the user wants to view the info
+    form.username.data = current_user.username # Note that this is the excact opposite of above `current_user.username = form.username.data`
+    form.about_me.data = current_user.about_me
+  return render_template('edit_profile.html', title='Edit Profile', form=form)
+

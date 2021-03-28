@@ -1,0 +1,5 @@
+{% for post in posts %}
+<p><img src="{{ post.author.avatar(36) }}"> 
+    {{ post.author.username }} says: {{ post.body }}
+</p>
+{% endfor %}

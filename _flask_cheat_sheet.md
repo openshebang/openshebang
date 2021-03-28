@@ -54,4 +54,18 @@ fromwerkzeug.securityimportgenerate_password_hash, check_password_hash
 
 `python3 -m pip install email-validator`
 
+# Gebruik Gravatar
+
+`>>> from hashlib import md5`
+`md5(b'dion@dresschers.net').hexdigest()`
+b0df67d3e946d7237bfe5193f41972da
+https://www.gravatar.com/avatar/b0df67d3e946d7237bfe5193f41972da
+https://www.gravatar.com/avatar/b0df67d3e946d7237bfe5193f41972da/?s=128
+https://www.gravatar.com/avatar/000007d3e946d7237bfe5193f41972da/?s=256&d=identicon Dit is 'identicon' en genereerd een random image van een niet bestaande gebruiker.
+
+# Jinja
+
+Anders dan de 'extends' heb je ook de 'include'.
+
+{% include '_post.html' %}
 

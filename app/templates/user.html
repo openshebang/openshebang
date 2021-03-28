@@ -1,0 +1,34 @@
+{% extends 'base-admin.html' %}
+
+{% block content %}
+
+<img src="{{ user.avatar(128) }}">
+<!-- Dit is de method die we zelf gemaakt hebben om de gravatar terug te struren, de 128 is de size -->
+
+<h1>User: {{ user.username }}</h1>
+{% if user.about_me %}
+<p>
+    {{ user.about_me }}
+</p>
+{% endif %}
+
+<hr>
+{% if user.last_seen %}
+<p>
+    Last seen on: {{ user.last_seen }}
+</p>
+{% endif %}
+
+
+
+
+{% include '_post.html' %}
+
+
+
+
+
+
+
+
+{% endblock content %}

@@ -46,19 +46,19 @@
         </li>
   
         {% else %}
-        <!-- Onnodige logout, want zit ook in user-menu 
+        
         <li class="nav-item">
           <a class="nav-link" href="{{ url_for('logout') }}"><i class="fa fa-times" aria-hidden="true"></i> Logout</a>
         </li>
-        -->
+        
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fa fa-user" aria-hidden="true"></i> Hello Dion
+            <i class="fa fa-user" aria-hidden="true"></i> BLABLA
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Profile</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('user', username=current_user.username) }}">Profile</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('edit_profile') }}">Edit profile</a></li>
             <li><hr class="dropdown-divider"></li>
                  <li><a class="nav-link" href="{{ url_for('logout') }}"><i class="fa fa-times" aria-hidden="true"></i> Logout</a></li>
           </ul>
@@ -88,7 +88,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ url_for('f1') }}">
                                 <span class="ml-2"><i class="fa fa-car" aria-hidden="true"></i> Formula 1</span>
                             </a>
                         </li>
