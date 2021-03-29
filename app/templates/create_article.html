@@ -1,0 +1,38 @@
+{% extends 'base-admin.html' %}
+
+{% block content %}
+
+    <form action="" method="post">
+           {{ form.hidden_tag() }}
+
+        <p>
+            {{ form.title.label }}
+            {{ form.title()}}
+            <p>
+            {% for error in form.title.errors %}
+                {{ error }}
+            {% endfor %}
+            </p>
+        </p>
+
+        <p>
+            {{ form.content.label }}
+            {{ form.content() }}
+            <p>
+            {% for error in form.content.errors %}
+                {{ error }}
+            {% endfor %}
+            </p>
+        </p>
+
+
+        </p>
+        <p>{{ form.submit() }}</p>       
+    </form>
+
+
+
+
+
+
+{% endblock content %}

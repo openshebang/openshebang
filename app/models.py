@@ -52,3 +52,13 @@ class F1Teams(db.Model):
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id)) # De `id` is een string dus moet een int worden.
+
+class Articles(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(), index=True)
+    content = db.Column(db.String(), index=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id')) # Dit is in de 'user', tabel, de 'id' column
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+
+    def __repr__(self):
+        return 'Article: '.format(self.title)

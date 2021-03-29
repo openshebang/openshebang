@@ -1,0 +1,10 @@
+{% for article in articles %}
+<p>
+    <h1>{{ article.title }}</h1>
+</p>
+    <p>Door: <i>{{ article.user_id }}</i> op {{ article.timestamp }} </p>
+    <pre>
+    {{ article.content }}
+    </pre>
+</p>
+{% endfor %}

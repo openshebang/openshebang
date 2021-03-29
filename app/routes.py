@@ -8,13 +8,15 @@ from app import db
 from app.forms import LoginForm
 from app.forms import RegistrationForm
 from app.forms import EditProfileForm
+from app.forms import ArticleForm
 from app.models import User
+from app.models import F1Teams # Nu kan je met de data uit de database werken.
+from app.models import Articles
 from flask_login import current_user
 from flask_login import login_user
 from flask_login import logout_user
 from flask_login import login_required # Dit is voor de decoratr @app.required
 from werkzeug.urls import url_parse
-from app.models import F1Teams # Nu kan je met de data uit de database werken.
 from datetime import datetime
 
 @app.before_request # This applies to any request, so you only have to write this once.
@@ -116,3 +118,19 @@ def edit_profile(): # we geven de username door voor de usernamecheck niet dubbe
     form.about_me.data = current_user.about_me
   return render_template('edit_profile.html', title='Edit Profile', form=form)
 
+@app.route('/article/new', methods=['GET','POST'])
+@login_required
+def article_new():
+  form = ArticleForm()
+  if form.validate_on_submit():
+    article = Articles(title=form.title.data, content=form.content.data, user_id=current_user.username) # De `Articles zit in de models.py`
+    db.session.add(article)
+    db.session.commit()
+    flash('Your post has been created!')
+    return redirect(url_for('index'))
+  return render_template('create_article.html', title='New Article', form=form)
+
+@app.route('/blog')
+def blog():
+  articles = Articles.query.all()
+  return render_template('blog.html', articles=articles)
