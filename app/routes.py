@@ -102,8 +102,8 @@ def user(username):
 
 @app.route('/edit_profile', methods=['GET', 'POST'])
 @login_required
-def edit_profile():
-  form = EditProfileForm()
+def edit_profile(): # we geven de username door voor de usernamecheck niet dubbel 
+  form = EditProfileForm(current_user.username)
   if form.validate_on_submit():
     current_user.username = form.username.data # The latter is the data that is entered in the html form by the user.
     current_user.about_me = form.about_me.data # The latter is the data that is entered in the html form by the user.

@@ -69,3 +69,15 @@ Anders dan de 'extends' heb je ook de 'include'.
 
 {% include '_post.html' %}
 
+# Flask Debug
+
+`export FLASK_DEBUG=1'
+`export FLASK_ENV=development
+
+# The Debugging temp SMTP server from python
+
+`python3 -m smtpd -n -c DebuggingServer localhost:8025` # This will just show the fake emails in the console output. For this you need to temporary set:
+
+`export MAIL_SERVER=localhost`
+`export MAIL_PORT=8025`
+
