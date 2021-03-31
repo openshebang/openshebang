@@ -1,0 +1,19 @@
+{% extends 'base-admin.html' %}
+
+{% block content %}
+
+{% for entry in entries %}
+
+<h1><a href="{{ url_for('dib_entry', entry_id=entry.id )}}"> {{ entry.title }} </a></h1> <!-- This is from the `entry_id` URL and this `entry.id` is from the database -->
+<h2> created by {{ entry.user_id }} on {{ entry.timestamp.strftime('%Y-%M-%d') }}
+</h2>
+
+<pre>
+    {{ entry.content }}
+</pre>
+
+
+
+{% endfor %}
+
+{% endblock content %}

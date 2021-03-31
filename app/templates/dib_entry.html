@@ -1,0 +1,17 @@
+{% extends 'base-admin.html' %}
+
+{% block content %}
+
+
+<h1> {{ entry.title }} </h1>
+<h2> created by {{ entry.user_id }} on {{ entry.timestamp.strftime('%Y-%M-%d') }}
+</h2>
+
+<pre>
+    {{ entry.content }}
+</pre>
+
+
+
+
+{% endblock content %}

@@ -56,9 +56,21 @@ def load_user(id):
 class Articles(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(), index=True)
+    subtitle = db.Column(db.String(), index=True)
     content = db.Column(db.String(), index=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id')) # Dit is in de 'user', tabel, de 'id' column
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
 
     def __repr__(self):
         return 'Article: '.format(self.title)
+
+class DibEntries(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(), index=True)
+    content = db.Column(db.String(), index=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id')) # Dit is in de 'user', tabel, de 'id' column
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+
+    def __repr__(self):
+        return 'Dib Entry: '.format(self.title)
+

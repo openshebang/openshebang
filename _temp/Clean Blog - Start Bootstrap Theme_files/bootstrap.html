@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        
+        De pagina zonder naam
+        
+    </title>
+    <link rel="stylesheet"
+        href="/static/vendor/bootstrap-5.0.0-beta3-dist/css/bootstrap.css ">
+    <!-- <link rel="stylesheet" href="/static/css/my_sidebar.css "> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.1.7/css/fork-awesome.min.css" integrity="sha256-gsmEoJAws/Kd3CjuOQzLie5Q3yshhvmo7YNtBG7aaEY=" crossorigin="anonymous">
+    <style>
+        #sidebar {
+            min-height: 100vh;
+            /* fill the whole sidebar until the bottom of the screen */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- top nav -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/blog_index"><i class="fa fa-file-text-o" aria-hidden="true"></i> Blog</a>
+        </li>
+
+         
+     
+        <li class="nav-item">
+          <a class="nav-link" href="/article/new"><i class="fa fa-pencil" aria-hidden="true"></i> New Article</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout"><i class="fa fa-times" aria-hidden="true"></i> Logout</a>
+        </li>
+        
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa fa-user" aria-hidden="true"></i> BLABLA
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/user/dion">Profile</a></li>
+            <li><a class="dropdown-item" href="/edit_profile">Edit profile</a></li>
+            <li><hr class="dropdown-divider"></li>
+                 <li><a class="nav-link" href="/logout"><i class="fa fa-times" aria-hidden="true"></i> Logout</a></li>
+          </ul>
+        </li>
+      
+  
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+    <!-- sidebar -->
+    <div class="container-fluid fill flex">
+        <div class="row fill">
+            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse fill">
+                <!-- sidebar content -->
+
+                <div class="position-sticky pt-md-5">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">
+                                <span class="ml-2"><i class="fa fa-building-o" aria-hidden="true"></i> Office</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/f1">
+                                <span class="ml-2"><i class="fa fa-car" aria-hidden="true"></i> Formula 1</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span class="ml-2"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Products</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span class="ml-2"><i class="fa fa-users" aria-hidden="true"></i> Customers</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span class="ml-2"><i class="fa fa-area-chart" aria-hidden="true"></i> Reports</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <span class="ml-2"><i class="fa fa-futbol-o" aria-hidden="true"></i> Businesscard</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+
+            </nav>
+            <!-- main area, so no navbars and sidebars -->
+            <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
+                <!-- breadcrums -->
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Overview</li>
+                    </ol>
+                </nav>
+
+                <div>LOGIN/LOGOUT USER
+                    <a href="/index">Home</a>
+                    
+                    <a href="/logout">Logout</a>
+                    
+                </div>
+
+                <h1>Hi dion</h1>
+                
+
+                
+                <ul>
+                    
+                </ul>
+                
+
+
+
+                
+
+<h1> Page not found.</h1>
+<p><a href="/index">Go back.</a></p>
+
+
+
+
+
+
+            </main>
+        </div>
+    </div>
+
+
+
+
+    <!-- Hello  -->
+
+
+
+
+    <script src="/static/vendor/bootstrap-5.0.0-beta3-dist/js/bootstrap.bundle.js"></script>
+    <!--
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        crossorigin="anonymous"></script>
+    -->
+</body>
+
+</html>

@@ -3,15 +3,18 @@ from flask import flash
 from flask import redirect
 from flask import url_for
 from flask import request
+from flask import abort
 from app import app
 from app import db
 from app.forms import LoginForm
 from app.forms import RegistrationForm
 from app.forms import EditProfileForm
 from app.forms import ArticleForm
+from app.forms import DibForm
 from app.models import User
 from app.models import F1Teams # Nu kan je met de data uit de database werken.
 from app.models import Articles
+from app.models import DibEntries # Deze zit in de models.py
 from flask_login import current_user
 from flask_login import login_user
 from flask_login import logout_user
@@ -123,14 +126,81 @@ def edit_profile(): # we geven de username door voor de usernamecheck niet dubbe
 def article_new():
   form = ArticleForm()
   if form.validate_on_submit():
-    article = Articles(title=form.title.data, content=form.content.data, user_id=current_user.username) # De `Articles zit in de models.py`
+    article = Articles(title=form.title.data, subtitle=form.subtitle.data, content=form.content.data, user_id=current_user.username) # De `Articles zit in de models.py`
     db.session.add(article)
     db.session.commit()
     flash('Your post has been created!')
     return redirect(url_for('index'))
   return render_template('create_article.html', title='New Article', form=form)
 
-@app.route('/blog')
-def blog():
-  articles = Articles.query.all()
-  return render_template('blog.html', articles=articles)
+@app.route('/blog_index')
+def blog_index():
+  articles = Articles.query.all() # This grabs all articles from the database.
+  return render_template('blog_index.html', articles=articles)
+
+@app.route('/blog_about')
+def blog_about():
+  return render_template('blog_about.html')
+
+@app.route('/blog_contact')
+def blog_contact():
+  return render_template('blog_contact.html')
+
+@app.route('/blog_add_post', methods=['GET','POST'])
+@login_required
+def blog_add_post():
+  form = ArticleForm()
+  if form.validate_on_submit():
+    article = Articles(title=form.title.data, subtitle=form.subtitle.data, content=form.content.data, user_id=current_user.username) # De `Articles zit in de models.py`
+    db.session.add(article)
+    db.session.commit()
+    flash('Your post has been created!')
+    return redirect(url_for('blog_index'))
+  return render_template('blog_add_post.html', form=form)
+
+@app.route('/blog/<int:id>')
+@login_required
+def article(id):
+  article = Articles.query.get_or_404(id) # Also only .query.get(id) exists
+  return render_template('blog_article.html')
+
+@app.route('/dib/new', methods=['GET','POST'])
+@login_required
+def dib_new():
+  form = DibForm()
+  if form.validate_on_submit():
+    entry = DibEntries(title=form.title.data, content=form.content.data, user_id=current_user.username)
+    db.session.add(entry)
+    db.session.commit()
+    flash('Your post has been created!')
+    return redirect(url_for('index'))
+  return render_template('dib_new.html', form=form)
+
+@app.route('/dib/entries')
+def dib_entries():
+  entries = DibEntries.query.all()
+  return render_template('dib_entries.html', entries=entries)
+
+@app.route('/dib/entry/<int:entry_id>') # Deze <article_id>  bestaat nog niet.
+def dib_entry(entry_id):
+  entry = DibEntries.query.get_or_404(entry_id)
+  return render_template('dib_entry.html', entry=entry)
+
+@app.route('/dib/entry/update/<int:entry_id>', methods=['POST','GET']) # Deze <article_id>  bestaat nog niet.
+@login_required
+def dib_update_entry(entry_id):
+  entry = DibEntries.query.get_or_404(entry_id)
+  #if entry.user_id != current_user:
+  #  abort(403)
+  form = DibForm()
+  if form.validate_on_submit():
+    entry.title = form.title.data 
+    entry.content = form.content.data
+    # db.session.add(entry) # We don't have to 'add' something new to the database.
+    db.session.commit()
+    flash('Your post has been updated!')
+    return redirect(url_for('dib_entry', entry_id=entry.id))
+  elif request.method == 'GET':
+    form.title.data = entry.title
+    form.content.data = entry.content
+  return render_template('dib_new.html', form=form, entry=entry)

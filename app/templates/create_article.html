@@ -14,7 +14,15 @@
             {% endfor %}
             </p>
         </p>
-
+        <p>
+            {{ form.subtitle.label }}
+            {{ form.subtitle()}}
+            <p>
+            {% for error in form.subtitle.errors %}
+                {{ error }}
+            {% endfor %}
+            </p>
+        </p>
         <p>
             {{ form.content.label }}
             {{ form.content() }}
