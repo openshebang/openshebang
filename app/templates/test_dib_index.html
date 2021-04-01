@@ -1,0 +1,7 @@
+
+
+
+
+{% for entry in entries %}
+"http://localhost:5000{{ url_for('dib_entry', entry_id=entry.id) }}",
+{% endfor %}

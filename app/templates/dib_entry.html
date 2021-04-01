@@ -5,13 +5,40 @@
 
 <h1> {{ entry.title }} </h1>
 <h2> created by {{ entry.user_id }} on {{ entry.timestamp.strftime('%Y-%M-%d') }}
+    {% if entry.user_id == current_user.username %}
+        <div>
+            <a class='btn btn-secondary m-1' href="{{ url_for('dib_update_entry', entry_id=entry.id) }}"><i class='fa fa-pencil'></i> Update</a>
+            <button type"button" class="btn btn-danger m-1" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="fa fa-times"></i> Delete</button>
+        </div>
+    {% endif %}
 </h2>
+
 
 <pre>
     {{ entry.content }}
 </pre>
 
 
-
-
+<!-- Modal (this is the popup from Bootstrap, this is triggered by the button (yes it has to be a button) with the properties: data-bs-toggle="modal" data-bs-target="deleteModal" )-->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModalLabel">Delete post?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <!-- 
+      <div class="modal-body">
+        ...
+      </div>
+        -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <form action="{{ url_for('dib_delete_entry', entry_id=entry.id) }}" method="POST">
+            <input class='btn btn-danger' type='submit' value='Delete'>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock content %}

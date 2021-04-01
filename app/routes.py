@@ -29,7 +29,7 @@ def before_request():
     db.session.commit()
 
 
-@app.route('/')
+@app.route('/admin')
 @app.route('/index')
 @login_required
 def index():
@@ -133,11 +133,43 @@ def article_new():
     return redirect(url_for('index'))
   return render_template('create_article.html', title='New Article', form=form)
 
-@app.route('/blog_index')
+@app.route('/') # Dit rendert de mooie view
 def blog_index():
   articles = Articles.query.all() # This grabs all articles from the database.
   return render_template('blog_index.html', articles=articles)
 
+@app.route('/blog/articles') # Dit rendert een view in de Admin
+@login_required
+def blog_articles():
+  articles = Articles.query.all() # This grabs all articles from the database.
+  return render_template('blog_articles.html', articles=articles)
+
+@app.route('/blog/article/update/<int:article_id>', methods=['POST','GET']) # Deze <article_id>  bestaat nog niet.
+@login_required
+def blog_article_update(article_id):
+  article = Articles.query.get_or_404(article_id)
+  if article.user_id != current_user.username:
+    abort(403)
+  form = ArticleForm()
+  if form.validate_on_submit():
+    article.title = form.title.data
+    article.subtitle = form.subtitle.data 
+    article.content = form.content.data
+    # db.session.add(entry) # We don't have to 'add' something new to the database.
+    db.session.commit()
+    flash('Your Article has been updated!', 'succes')
+    return redirect(url_for('blog_article', article_id=article.id))
+  elif request.method == 'GET':
+    form.title.data = article.title
+    form.subtitle.data = article.subtitle
+    form.content.data = article.content
+  return render_template('create_article.html', form=form, article=article)
+
+@app.route('/blog/article/<int:article_id>') #S Deze <article_id>  bestaat nog niet. # Dit is de backend-view voor het article.S
+def blog_article(article_id):
+  article = Articles.query.get_or_404(article_id)
+  return render_template('blog_article_admin.html', article=article)
+ 
 @app.route('/blog_about')
 def blog_about():
   return render_template('blog_about.html')
@@ -190,8 +222,8 @@ def dib_entry(entry_id):
 @login_required
 def dib_update_entry(entry_id):
   entry = DibEntries.query.get_or_404(entry_id)
-  #if entry.user_id != current_user:
-  #  abort(403)
+  if entry.user_id != current_user.username:
+    abort(403)
   form = DibForm()
   if form.validate_on_submit():
     entry.title = form.title.data 
@@ -204,3 +236,35 @@ def dib_update_entry(entry_id):
     form.title.data = entry.title
     form.content.data = entry.content
   return render_template('dib_new.html', form=form, entry=entry)
+
+@app.route("/dib/entry/delete/<int:entry_id>", methods=['POST'])
+@login_required
+def dib_delete_entry(entry_id):
+  entry = DibEntries.query.get_or_404(entry_id)
+  if entry.user_id != current_user.username:
+    abort(403)
+  db.session.delete(entry)
+  db.session.commit()
+  flash('Your entry has been deleted.', 'danger')
+  return redirect(url_for('index'))
+
+@app.route('/blog/article/delete/<int:article_id>', methods=['POST', 'GET'])
+@login_required
+def blog_article_delete(article_id):
+  article = Article.query.get_or_404(article_id)
+  #if article.user_id != current_user.username:
+  #  abort(403)
+  db.session.delete(entry)
+  db.session.commit()
+  flash('Article is nu FOETSIE!', 'danger')
+  return redirect(url_for('index'))
+
+@app.route('/dib/index')
+def dib_index():
+  entries = DibEntries.query.all()
+  return render_template('dib_index.html', entries=entries)
+
+@app.route('/dib/entry/presentation/<int:entry_id>') # Deze <article_id>  bestaat nog niet.
+def dib_entry_presentation(entry_id):
+  entry = DibEntries.query.get_or_404(entry_id)
+  return render_template('dib_entry_presentation.html', entry=entry)

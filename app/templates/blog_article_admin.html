@@ -1,0 +1,27 @@
+{% extends 'base-admin.html' %}
+
+{% block content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a href="{{ url_for('blog_article_update', article_id=article.id) }}"><button type="button" class="btn btn-secondary">Update</button></a>
+<a href="{{ url_for('blog_article_delete', article_id=article.id) }}"> <button type="button" class="btn btn-danger">Delete</button></a>
+
+<h1>{{article.title}}</h1>
+<h2>{{article.subtitle}}</h2>
+<pre>{{article.content}}</pre>
+
+{% endblock content %}
+
+
+

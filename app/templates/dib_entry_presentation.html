@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Insert title here</title>
+<link href="assets/css/bootstrap.css" rel="stylesheet" type="text/css"> <!-- getbootstrap.com -->
+<link href="assets/css/custom.css" rel="stylesheet" type="text/css"> <!-- eigen aanpassingen -->
+<link href="assets/css/all.css" rel="stylesheet"> <!-- fontawesome.com - load all styles -->
+<script defer src="/your-path-to-fontawesome/js/all.js"></script> <!-- fontawesome.com - load all styles - meant for SVG with JavaScript -->
+  <link rel="stylesheet"
+    href="{{ url_for('static', filename='vendor/bootstrap-5.0.0-beta3-dist/css/bootstrap.css') }} ">
+  <!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/my_sidebar.css') }} "> -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.1.7/css/fork-awesome.min.css"
+    integrity="sha256-gsmEoJAws/Kd3CjuOQzLie5Q3yshhvmo7YNtBG7aaEY=" crossorigin="anonymous">
+<style>
+	@CHARSET "ISO-8859-1";
+
+div.container {
+	background-color: pink;
+}
+
+ul {
+	display: block;
+	list-style-type: none;
+
+}
+
+li {
+	//float: left;
+		padding: 10px;
+}
+
+a i {
+	color: black;
+
+}
+
+.DionCentertImage
+{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+}
+
+@font-face {
+    font-family: Metropolis;
+    src: url("Metropolis-Regular.woff"), format('woff'),
+		 url("Metropolis-Regular.otf"), format('otf')");
+}
+
+</style>
+</head>
+<body>
+<img src="{{ url_for('static', filename='img/amsterdamumclogocopyrighted.png') }}" alt="Amsterdam UMC Logo" class="DionCentertImage">
+<div style="text-align: center;"><p style="font-family: 'Metropolis';"><h1>Apotheek</h1></p></div>
+
+
+
+<div class="container justify-content-center" style="background-color: white; margin-top: 50px;" >
+
+
+<h1 style="text-align: center;"> {{ entry.title }} </h1>
+<h2 style="text-align: center;"> created by {{ entry.user_id }} on {{ entry.timestamp.strftime('%Y-%M-%d') }}
+
+</h2>
+
+
+<h3 style="text-align: center;">
+    {{ entry.content }}
+</h3>
+</div>
+
+  <script src="{{ url_for('static', filename='vendor/bootstrap-5.0.0-beta3-dist/js/bootstrap.bundle.js') }}"></script>
+	<!-- Origineel in de rotator... <script src="assets/js/bootstrap.min.js"></script> -->
+</body>
+</html>
+

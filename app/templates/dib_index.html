@@ -1,0 +1,47 @@
+<br>
+<! DOCTYPE html>
+<head>
+<title>Test</title>
+<style>
+iframe {
+	margin-top: 0px;
+	margin-left: 0px;
+	margin-right: 0px;
+}
+</style>
+</head>
+<body onload="showUrl(0)" class="app-chrome">
+<iframe id="rotator" src=""  width="100%" height="100%" frameBorder="0" scrolling="no"></iframe>
+
+<script>
+// start when the page is loaded
+window.onload = function() {
+
+var urls = [
+	"https://www.nu.nl",
+	"https://apotheek-amc.matrickx.com/dashboard/?authkey=NKNjS8xYuS",
+    {% for entry in entries %}
+    "http://localhost:5000{{ url_for('dib_entry_presentation', entry_id=entry.id) }}",
+    {% endfor %}
+];
+
+var index = 1;
+var el = document.getElementById("rotator");
+
+setTimeout(function rotate() {
+
+if ( index === urls.length ) {
+index = 0;
+}
+
+el.src = urls[index];
+index = index + 1;
+
+// continue rotating iframes
+setTimeout(rotate, 5000);
+
+}, 5000); // 5000ms = 5s
+};
+</script>
+</body>
+</html>
