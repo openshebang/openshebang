@@ -11,10 +11,12 @@ from app.forms import RegistrationForm
 from app.forms import EditProfileForm
 from app.forms import ArticleForm
 from app.forms import DibForm
+from app.forms import DibSettingsForm
 from app.models import User
 from app.models import F1Teams # Nu kan je met de data uit de database werken.
 from app.models import Articles
 from app.models import DibEntries # Deze zit in de models.py
+from app.models import DibSettings
 from flask_login import current_user
 from flask_login import login_user
 from flask_login import logout_user
@@ -104,6 +106,7 @@ def user(username):
     {'author': user, 'body': 'Test post # 3'},
   ]
   return render_template('user.html', user=user, posts=posts)
+
 
 @app.route('/edit_profile', methods=['GET', 'POST'])
 @login_required
@@ -248,23 +251,121 @@ def dib_delete_entry(entry_id):
   flash('Your entry has been deleted.', 'danger')
   return redirect(url_for('index'))
 
-@app.route('/blog/article/delete/<int:article_id>', methods=['POST', 'GET'])
-@login_required
-def blog_article_delete(article_id):
-  article = Article.query.get_or_404(article_id)
-  #if article.user_id != current_user.username:
-  #  abort(403)
-  db.session.delete(entry)
-  db.session.commit()
-  flash('Article is nu FOETSIE!', 'danger')
-  return redirect(url_for('index'))
-
 @app.route('/dib/index')
 def dib_index():
   entries = DibEntries.query.all()
-  return render_template('dib_index.html', entries=entries)
+  settings = DibSettings.query.get(1)
+  urls = []
+  urls.append('http://info.cern.ch/hypertext')
+  urls.append('http://info.cern.ch/hypertext/WWW/TheProject.html')
+  speed = 2000
+  return render_template('dib_index.html', settings=settings, urls=urls, entries=entries)
+
+@app.route('/dib/settings', methods=['POST', 'GET'])
+def dib_settings():
+  form = DibSettingsForm()
+  if DibSettings.query.get(1):
+    dib_settings = DibSettings.query.get(1)
+  else:
+    dib_settings = DibSettings(id=1, delay=5000, toptext='Nieuws', topimage='bla2.svg')
+    db.session.add(dib_settings)
+    db.session.commit()
+  if form.validate_on_submit():
+    dib_settings.delay = form.delay.data
+    dib_settings.toptext = form.toptext.data
+    dib_settings.topimage = form.topimage.data
+    # db.session.add(dib_settings)
+    db.session.commit()
+    flash('This has been updated!', 'warning')
+    return redirect(url_for('index'))
+  if request.method == 'GET':
+    form.delay.data = dib_settings.delay
+    form.toptext.data = dib_settings.toptext
+    form.topimage.data = dib_settings.topimage
+  return render_template('dib_settings.html', form=form)  
+
+temp1 = """
+@app.route('/dib/entry/update/<int:entry_id>', methods=['POST','GET']) # Deze <article_id>  bestaat nog niet.
+@login_required
+def dib_update_entry(entry_id):
+  entry = DibEntries.query.get_or_404(entry_id)
+  if entry.user_id != current_user.username:
+    abort(403)
+  form = DibForm()
+  if form.validate_on_submit():
+    entry.title = form.title.data 
+    entry.content = form.content.data
+    # db.session.add(entry) # We don't have to 'add' something new to the database.
+    db.session.commit()
+    flash('Your post has been updated!')
+    return redirect(url_for('dib_entry', entry_id=entry.id))
+  elif request.method == 'GET':
+    form.title.data = entry.title
+    form.content.data = entry.content
+  return render_template('dib_new.html', form=form, entry=entry)
+"""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @app.route('/dib/entry/presentation/<int:entry_id>') # Deze <article_id>  bestaat nog niet.
 def dib_entry_presentation(entry_id):
   entry = DibEntries.query.get_or_404(entry_id)
-  return render_template('dib_entry_presentation.html', entry=entry)
+  settings = DibSettings.query.get(1)
+  return render_template('dib_entry_presentation.html', entry=entry, settings=settings)
+
+@app.route('/cards/show_card')
+def cards_show_card():
+    suit = ['c', 'd', 'h', 's']
+
+    def new_deck():
+      deck = []
+      for suitcard in suit:
+          for rank in range (1, 14, +1):
+              card = [suitcard, rank]
+              deck.append(card)
+      return deck
+
+    def shuffle_deck(deck):
+        from random import shuffle
+        shuffle(deck)
+        return deck
+  
+    def image_card(card):
+      return card[0] + '-' + str(card[1]) + '.svg'
+   
+    deck = new_deck()
+    deck = shuffle_deck(deck)
+
+    def deal_top_card(deck):
+        card = deck.pop(0) 
+        return card
+
+    card = deal_top_card(deck)   
+
+    card = '/svg/cards/' + image_card(card) 
+
+    return render_template('cards_show_card.html', card=card)

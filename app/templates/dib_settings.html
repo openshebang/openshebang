@@ -1,0 +1,45 @@
+{% extends 'base-admin.html' %}
+
+{% block content %}
+
+<h1>Welkom bij de Display Board - Settings</h1>
+
+<form action="" method="POST">
+    {{ form.hidden_tag() }}
+
+    <p>
+        {{ form.delay.label }}
+        {{ form.delay() }} in miliseconden.
+    </p>
+    <p> {% for error in form.delay.errors %}
+        {{ error }}
+        {% endfor %}
+    </p>
+
+
+    <p>
+        {{ form.toptext.label }}
+        {{ form.toptext() }}
+    </p>
+    <p> {% for error in form.toptext.errors %}
+        {{ error }}
+        {% endfor %}
+    </p>
+    
+
+    <p>
+        {{ form.topimage.label }}
+        {{ form.topimage() }}
+    </p>
+    <p> {% for error in form.topimage.errors %}
+        {{ error }}
+        {% endfor %}
+    </p>
+        {{ form.submit() }}
+
+</form>
+{% endblock content %}
+
+
+
+

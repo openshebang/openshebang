@@ -74,3 +74,11 @@ class DibEntries(db.Model):
     def __repr__(self):
         return 'Dib Entry: '.format(self.title)
 
+class DibSettings(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    delay = db.Column(db.Integer, default=5000)
+    toptext = db.Column(db.String())
+    topimage = db.Column(db.String())
+
+    def __repr__(self):
+        return 'DIB Settings: '.format(self.delay, self.toptext, self.topimage)

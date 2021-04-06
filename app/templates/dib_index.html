@@ -18,8 +18,9 @@ iframe {
 window.onload = function() {
 
 var urls = [
-	"https://www.nu.nl",
-	"https://apotheek-amc.matrickx.com/dashboard/?authkey=NKNjS8xYuS",
+	{% for url in urls %}
+	"{{ url }}",
+	{% endfor %}
     {% for entry in entries %}
     "http://localhost:5000{{ url_for('dib_entry_presentation', entry_id=entry.id) }}",
     {% endfor %}
@@ -38,7 +39,7 @@ el.src = urls[index];
 index = index + 1;
 
 // continue rotating iframes
-setTimeout(rotate, 5000);
+setTimeout(rotate, {{ settings.delay }});
 
 }, 5000); // 5000ms = 5s
 };

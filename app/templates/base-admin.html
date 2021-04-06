@@ -121,27 +121,20 @@
            <li class="nav-item">
             <a class="nav-link mx-2" href="{{ url_for('dib_entries') }}"><i class="fa fa-list" aria-hidden="true"></i> All Entries</a>
           </li>
-
-      
+                  <li class="nav-item">
+            <a class="nav-link mx-2" href="{{ url_for('dib_settings') }}"><i class="fa fa-cog" aria-hidden="true"></i> Settings</a>
+          </li>
                    {% endif %}
-            <li class="nav-item">
+                   <!--            
+                     <li class="nav-item">
               <a class="nav-link" href="{{ url_for('f1') }}">
                 <span class="ml-2"><i class="fa fa-car" aria-hidden="true"></i> Formula 1</span>
               </a>
             </li>
+          -->
             <li class="nav-item">
-              <a class="nav-link" href="#">
-                <span class="ml-2"><i class="fa fa-users" aria-hidden="true"></i> Customers</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <span class="ml-2"><i class="fa fa-area-chart" aria-hidden="true"></i> Reports</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <span class="ml-2"><i class="fa fa-futbol-o" aria-hidden="true"></i> Businesscard</span>
+              <a class="nav-link" href="{{ url_for('cards_show_card') }}">
+                <span class="ml-2"><i class="fa fa-heart-o" aria-hidden="true"></i> Cards</span>
               </a>
             </li>
           </ul>

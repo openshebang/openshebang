@@ -51,8 +51,8 @@ a i {
 </style>
 </head>
 <body>
-<img src="{{ url_for('static', filename='img/amsterdamumclogocopyrighted.png') }}" alt="Amsterdam UMC Logo" class="DionCentertImage">
-<div style="text-align: center;"><p style="font-family: 'Metropolis';"><h1>Apotheek</h1></p></div>
+<img src="{{ url_for('static', filename='/svg/dib/' + settings.topimage) }}" alt="TopImage" class="DionCentertImage">
+<div style="text-align: center;"><p style="font-family: 'Metropolis';"><h1>{{settings.toptext}}</h1></p></div>
 
 
 

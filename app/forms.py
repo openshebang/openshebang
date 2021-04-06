@@ -4,6 +4,7 @@ from wtforms import PasswordField
 from wtforms import BooleanField
 from wtforms import SubmitField
 from wtforms import TextAreaField
+from wtforms import IntegerField
 from wtforms.validators import DataRequired
 from wtforms.validators import ValidationError
 from wtforms.validators import Email
@@ -60,4 +61,10 @@ class DibForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     content = TextAreaField('Content', validators=[DataRequired()])
     submit = SubmitField('Add')
+
+class DibSettingsForm(FlaskForm):
+    delay = IntegerField('Vertraging')
+    toptext = StringField('Top Text')
+    topimage = StringField('Top Image')
+    submit = SubmitField('Updaten')
 
