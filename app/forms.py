@@ -5,11 +5,14 @@ from wtforms import BooleanField
 from wtforms import SubmitField
 from wtforms import TextAreaField
 from wtforms import IntegerField
+from wtforms import FileField # Niet van Grinberg of Shaefer, maar van Vuka
 from wtforms.validators import DataRequired
 from wtforms.validators import ValidationError
 from wtforms.validators import Email
 from wtforms.validators import EqualTo
 from wtforms.validators import Length
+#from wtforms.validators import FileRequired # Van Vuka
+from flask_wtf.file import FileField, FileRequired, FileAllowed # Nodig voor de uploads van de File. Niet van Grinberg/Shaefer
 from app.models import User
 
 class LoginForm(FlaskForm):
@@ -67,4 +70,3 @@ class DibSettingsForm(FlaskForm):
     toptext = StringField('Top Text')
     topimage = StringField('Top Image')
     submit = SubmitField('Updaten')
-

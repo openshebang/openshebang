@@ -82,3 +82,12 @@ class DibSettings(db.Model):
 
     def __repr__(self):
         return 'DIB Settings: '.format(self.delay, self.toptext, self.topimage)
+
+class DbImages(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    img = db.Column(db.Text, unique=True, nullable=False)
+    name = db.Column(db.Text, nullable=False)
+    mimetype = db.Column(db.Text, nullable=False)
+
+    def __repr__(self):
+        return 'DB Image: '.format(self.name)

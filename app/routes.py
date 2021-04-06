@@ -12,16 +12,19 @@ from app.forms import EditProfileForm
 from app.forms import ArticleForm
 from app.forms import DibForm
 from app.forms import DibSettingsForm
+from app.forms import DbImagesForm
 from app.models import User
 from app.models import F1Teams # Nu kan je met de data uit de database werken.
 from app.models import Articles
 from app.models import DibEntries # Deze zit in de models.py
 from app.models import DibSettings
+from app.models import DbImages
 from flask_login import current_user
 from flask_login import login_user
 from flask_login import logout_user
 from flask_login import login_required # Dit is voor de decoratr @app.required
 from werkzeug.urls import url_parse
+from werkzeug.utils import secure_filename # Deze is niet van Grinberg of Shaefer, maar van Vuka - https://youtu.be/zMhmZ_ePGiM 
 from datetime import datetime
 
 @app.before_request # This applies to any request, so you only have to write this once.
@@ -29,7 +32,6 @@ def before_request():
   if current_user.is_authenticated:
     current_user.last_seen = datetime.utcnow() # This will be a long datetime string
     db.session.commit()
-
 
 @app.route('/admin')
 @app.route('/index')
@@ -284,52 +286,6 @@ def dib_settings():
     form.topimage.data = dib_settings.topimage
   return render_template('dib_settings.html', form=form)  
 
-temp1 = """
-@app.route('/dib/entry/update/<int:entry_id>', methods=['POST','GET']) # Deze <article_id>  bestaat nog niet.
-@login_required
-def dib_update_entry(entry_id):
-  entry = DibEntries.query.get_or_404(entry_id)
-  if entry.user_id != current_user.username:
-    abort(403)
-  form = DibForm()
-  if form.validate_on_submit():
-    entry.title = form.title.data 
-    entry.content = form.content.data
-    # db.session.add(entry) # We don't have to 'add' something new to the database.
-    db.session.commit()
-    flash('Your post has been updated!')
-    return redirect(url_for('dib_entry', entry_id=entry.id))
-  elif request.method == 'GET':
-    form.title.data = entry.title
-    form.content.data = entry.content
-  return render_template('dib_new.html', form=form, entry=entry)
-"""
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @app.route('/dib/entry/presentation/<int:entry_id>') # Deze <article_id>  bestaat nog niet.
 def dib_entry_presentation(entry_id):
@@ -369,3 +325,4 @@ def cards_show_card():
     card = '/svg/cards/' + image_card(card) 
 
     return render_template('cards_show_card.html', card=card)
+
