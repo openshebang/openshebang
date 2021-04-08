@@ -81,3 +81,16 @@ Anders dan de 'extends' heb je ook de 'include'.
 `export MAIL_SERVER=localhost`
 `export MAIL_PORT=8025`
 
+# Remove changes in git:
+
+`$ git commit -- .`
+
+# VSCODE - vertical line 8 chars
+
+Menu - File - Preference - Settings - editor.rulers
+
+
+
+
+
+

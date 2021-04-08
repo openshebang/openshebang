@@ -13,4 +13,6 @@ class Config(object):
     ADMINS = ['dion@dresschers.net']
     UPLOAD_FOLDER = '/the/uploads'
     ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'md', 'svg'])
-
+    MAX_CONTENT_LENGTH = 1024 * 1024
+    UPLOAD_EXTENSIONS = ['.jpg', '.png', '.gif', '.svg', '.jpeg']
+    UPLOAD_PATH = 'app/static/uploads' # The `app` part is NOT dynamic and should be made dynamic.... Make sure that you upload this file first!

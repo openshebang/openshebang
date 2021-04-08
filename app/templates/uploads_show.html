@@ -1,0 +1,19 @@
+{% extends 'base-admin.html' %}
+
+{% block content %}
+
+<h1>Uploads - New</h1>
+
+{% for filename in files %}
+<img src="{{ url_for('static', filename='uploads/' + filename) }}" style="width: 64px">
+
+
+
+
+
+
+<p>Filename = {{filename}}</p>
+<hr>
+{% endfor %}
+
+{% endblock content %}

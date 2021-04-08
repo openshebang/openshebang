@@ -42,7 +42,6 @@ if not app.debug:
     app.logger.setLevel(logging.INFO)
     app.logger.info('OpenShebang startup') # This will create a line in the logfile with the text 'OpenShebang startup', with the file on which it is was executed (which you will see in the 'logs/openshebang.log'-file)
     
-
 from app import routes # De routes is `app\routes.py`. Deze moet onderaan. De routes.py file.
 from app import models # This modesl will define the structure of the database. De models.py file.
 from app import errors # Dit is de `app`, directory, de `errors.py`-file

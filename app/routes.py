@@ -12,20 +12,22 @@ from app.forms import EditProfileForm
 from app.forms import ArticleForm
 from app.forms import DibForm
 from app.forms import DibSettingsForm
-from app.forms import DbImagesForm
 from app.models import User
 from app.models import F1Teams # Nu kan je met de data uit de database werken.
 from app.models import Articles
 from app.models import DibEntries # Deze zit in de models.py
 from app.models import DibSettings
-from app.models import DbImages
 from flask_login import current_user
 from flask_login import login_user
 from flask_login import logout_user
 from flask_login import login_required # Dit is voor de decoratr @app.required
 from werkzeug.urls import url_parse
-from werkzeug.utils import secure_filename # Deze is niet van Grinberg of Shaefer, maar van Vuka - https://youtu.be/zMhmZ_ePGiM 
+from werkzeug.utils import secure_filename # Voor het uploaden van files met een check...
 from datetime import datetime
+import imghdr # needed for the by us created function `validate_image`
+from flask import send_from_directory # Necessary if NOT is send from the 'static' folder.
+import os # Is this alreay done in the app.py !?
+
 
 @app.before_request # This applies to any request, so you only have to write this once.
 def before_request():
@@ -286,12 +288,50 @@ def dib_settings():
     form.topimage.data = dib_settings.topimage
   return render_template('dib_settings.html', form=form)  
 
-
 @app.route('/dib/entry/presentation/<int:entry_id>') # Deze <article_id>  bestaat nog niet.
 def dib_entry_presentation(entry_id):
   entry = DibEntries.query.get_or_404(entry_id)
   settings = DibSettings.query.get(1)
   return render_template('dib_entry_presentation.html', entry=entry, settings=settings)
+
+# Uploads ---------------------------------------------------------------------
+
+# Here no decorator as this is NO route
+def validate_image(stream):
+    header = stream.read(512)
+    stream.seek(0) 
+    format = imghdr.what(None, header)
+    if not format:
+        return None
+    return '.' + (format if format != 'jpeg' else 'jpg')
+
+@app.route('/uploads/new') # If the request is a 'GET', otherwise see the 'POST', below...
+def uploads_new_get():
+    return render_template('uploads_new.html')
+
+@app.route('/uploads/new', methods=['POST'])
+def uploads_new_post():
+  if request.method == 'POST':
+    uploaded_file = request.files['file']
+    filename = secure_filename(uploaded_file.filename)
+    if filename != '':
+        file_ext = os.path.splitext(filename)[1]
+        if file_ext not in app.config['UPLOAD_EXTENSIONS'] or \
+                file_ext != validate_image(uploaded_file.stream):
+            abort(400)
+        uploaded_file.save(os.path.join(app.config['UPLOAD_PATH'], filename))
+  return render_template('uploads_new.html')
+
+@app.route('/uploads/show')
+def uploads_show():
+  files = os.listdir(app.config['UPLOAD_PATH'])
+  return render_template('uploads_show.html', files=files)
+
+#@app.route('/uploads/<filename>')
+#def upload(filename): 
+#    return send_from_directory(app.config['UPLOAD_PATH'], filename)
+
+# Cards -----------------------------------------------------------------------
 
 @app.route('/cards/show_card')
 def cards_show_card():

@@ -1,0 +1,18 @@
+
+{% extends 'base-admin.html' %}
+
+{% block content %}
+
+Uploads - New
+
+    <form method="POST" action="" enctype="multipart/form-data">
+        <p>Ignore the message 'No file chose' after uploading, as the page is reloaded and defaulted. Check if the file actually is uploaded</p>
+        <p>You can make sure the directory has been created that has been defined in the `app.config['UPLOAD_PATH']`, which in this case  is: 'static/uploads'`. Otherwise it will be created but raises initially an error.</p>
+      <p><input type="file" name="file"></p>
+      <p><input type="submit" value="Submit"></p>
+    </form>
+      <p><a href="{{ url_for('uploads_show') }}">See all uploaded images.</a></p>
+
+
+{% endblock  content %}
+

@@ -144,15 +144,19 @@
               </a>
             </li>
             {% if current_user.is_authenticated %}
-             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{{ url_for('db_images_upload') }}">
-                <span class="ml-2"><i class="fa fa-image" aria-hidden="true"></i> Image Upload</span>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{{ url_for('uploads_new_get') }}">
+                <span class="ml-2"><i class="fa fa-image" aria-hidden="true"></i> Uploads New</span>
               </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{{ url_for('uploads_show') }}">
+                <span class="ml-2"><i class="fa fa-file-image-o" aria-hidden="true"></i> Uploads Show</span>
+              </a>
+            </li>
             {% endif %}
           </ul>
         </div>
-
-
       </nav>
       <!-- main area, so no navbars and sidebars -->
       <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4 py-4">
