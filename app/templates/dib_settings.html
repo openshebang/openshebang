@@ -25,7 +25,51 @@
         {{ error }}
         {% endfor %}
     </p>
-    
+    Hieronder kunnen maximaal 5 URL's externe URLs aangegeven worden waartussen gescrolt moet worden. Let op dat URLs beginnen met 'HTTPS' in plaats van 'HTTP', soms niet (goed) kunnen worden weergegeven.
+    <p>
+        {{ form.url1.label }}
+        {{ form.url1() }}
+    </p>
+    <p> {% for error in form.url1.errors %}
+        {{ error }}
+        {% endfor %}
+    </p>
+
+    <p>
+        {{ form.url2.label }}
+        {{ form.url2() }}
+    </p>
+    <p> {% for error in form.url2.errors %}
+        {{ error }}
+        {% endfor %}
+    </p>
+
+    <p>
+        {{ form.url3.label }}
+        {{ form.url3() }}
+    </p>
+    <p> {% for error in form.url3.errors %}
+        {{ error }}
+        {% endfor %}
+    </p>
+
+    <p>
+        {{ form.url4.label }}
+        {{ form.url4() }}
+    </p>
+    <p> {% for error in form.url4.errors %}
+        {{ error }}
+        {% endfor %}
+    </p>
+
+    <p>
+        {{ form.url5.label }}
+        {{ form.url5() }}
+    </p>
+    <p> {% for error in form.url5.errors %}
+        {{ error }}
+        {% endfor %}
+    </p>
 
     <p>
         {{ form.topimage.label }}

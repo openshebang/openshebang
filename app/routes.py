@@ -203,12 +203,14 @@ def article(id):
   article = Articles.query.get_or_404(id) # Also only .query.get(id) exists
   return render_template('blog_article.html')
 
+
+# DIB ------------------------------------------------------------------------------------
 @app.route('/dib/new', methods=['GET','POST'])
 @login_required
 def dib_new():
   form = DibForm()
   if form.validate_on_submit():
-    entry = DibEntries(title=form.title.data, content=form.content.data, user_id=current_user.username)
+    entry = DibEntries(title=form.title.data, content=form.content.data, image=form.image.data, user_id=current_user.username)
     db.session.add(entry)
     db.session.commit()
     flash('Your post has been created!')
@@ -235,6 +237,7 @@ def dib_update_entry(entry_id):
   if form.validate_on_submit():
     entry.title = form.title.data 
     entry.content = form.content.data
+    entry.image = form.image.data
     # db.session.add(entry) # We don't have to 'add' something new to the database.
     db.session.commit()
     flash('Your post has been updated!')
@@ -242,6 +245,7 @@ def dib_update_entry(entry_id):
   elif request.method == 'GET':
     form.title.data = entry.title
     form.content.data = entry.content
+    form.image.data = entry.image
   return render_template('dib_new.html', form=form, entry=entry)
 
 @app.route("/dib/entry/delete/<int:entry_id>", methods=['POST'])
@@ -262,7 +266,6 @@ def dib_index():
   urls = []
   urls.append('http://info.cern.ch/hypertext')
   urls.append('http://info.cern.ch/hypertext/WWW/TheProject.html')
-  speed = 2000
   return render_template('dib_index.html', settings=settings, urls=urls, entries=entries)
 
 @app.route('/dib/settings', methods=['POST', 'GET'])
@@ -278,6 +281,11 @@ def dib_settings():
     dib_settings.delay = form.delay.data
     dib_settings.toptext = form.toptext.data
     dib_settings.topimage = form.topimage.data
+    dib_settings.url1 = form.url1.data
+    dib_settings.url2 = form.url2.data
+    dib_settings.url3 = form.url3.data
+    dib_settings.url4 = form.url4.data
+    dib_settings.url5 = form.url5.data
     # db.session.add(dib_settings)
     db.session.commit()
     flash('This has been updated!', 'warning')
@@ -286,6 +294,11 @@ def dib_settings():
     form.delay.data = dib_settings.delay
     form.toptext.data = dib_settings.toptext
     form.topimage.data = dib_settings.topimage
+    form.url1.data = dib_settings.url1
+    form.url2.data = dib_settings.url2
+    form.url3.data = dib_settings.url3
+    form.url4.data = dib_settings.url4
+    form.url5.data = dib_settings.url5
   return render_template('dib_settings.html', form=form)  
 
 @app.route('/dib/entry/presentation/<int:entry_id>') # Deze <article_id>  bestaat nog niet.
@@ -293,6 +306,8 @@ def dib_entry_presentation(entry_id):
   entry = DibEntries.query.get_or_404(entry_id)
   settings = DibSettings.query.get(1)
   return render_template('dib_entry_presentation.html', entry=entry, settings=settings)
+
+# /DIB
 
 # Uploads ---------------------------------------------------------------------
 

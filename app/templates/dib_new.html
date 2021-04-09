@@ -3,41 +3,37 @@
 {% block content %}
 
 {% with messages = get_flashed_messages() %}
-    {% if messages %}
-        <ul>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+{% if messages %}
+<ul>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
 {% endwith %}
 
-
 <form action="" method="post">
-{{ form.hidden_tag() }}
-<hr>
-{{ form.title.label }}
-{{ form.title() }}
-{% for error in form.title.errors %}
-{{ error }}
-{% endfor %}
-<hr>
-{{ form.content.label }}
-{{ form.content() }}
-{% for error in form.content.errors %}
-{{ error }}
-{% endfor %}
-<hr>
-{{ form.submit() }}
-</from>
-
-
-
-
-
-
-
-
-
+    {{ form.hidden_tag() }}
+    <hr>
+    {{ form.title.label }}
+    {{ form.title() }}
+    {% for error in form.title.errors %}
+    {{ error }}
+    {% endfor %}
+    <hr>
+    {{ form.content.label }}
+    {{ form.content() }}
+    {% for error in form.content.errors %}
+    {{ error }}
+    {% endfor %}
+    <hr>
+    {{ form.image.label }}
+    {{ form.image() }}
+    {% for error in form.image.errors %}
+    {{ error }}
+    {% endfor %}
+    <hr>
+    {{ form.submit() }}
+</form>
 
 {% endblock content %}

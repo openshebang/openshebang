@@ -63,10 +63,16 @@ class ArticleForm(FlaskForm):
 class DibForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     content = TextAreaField('Content', validators=[DataRequired()])
+    image = StringField('Image')
     submit = SubmitField('Add')
 
 class DibSettingsForm(FlaskForm):
     delay = IntegerField('Vertraging')
     toptext = StringField('Top Text')
     topimage = StringField('Top Image')
+    url1 = StringField('URL 1')
+    url2 = StringField('URL 2')
+    url3 = StringField('URL 3')
+    url4 = StringField('URL 4')
+    url5 = StringField('URL 5')
     submit = SubmitField('Updaten')

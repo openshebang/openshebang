@@ -89,8 +89,17 @@ Anders dan de 'extends' heb je ook de 'include'.
 
 Menu - File - Preference - Settings - editor.rulers
 
+# Flask Update
 
+If the database can't be upgraded anymore because of the error `Target database is not up to date.`
 
+use:
+
+```
+$ flask db stamp head
+$ flask db migrate
+$ flask db upgrade
+```
 
 
 

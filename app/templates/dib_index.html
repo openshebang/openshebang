@@ -18,12 +18,17 @@ iframe {
 window.onload = function() {
 
 var urls = [
-	{% for url in urls %}
-	"{{ url }}",
-	{% endfor %}
+	{% if settings.url1 %}"{{ settings.url1 }}",{% endif %}
+	{% if settings.url2 %}"{{ settings.url2 }}",{% endif %}
+	{% if settings.url3 %}"{{ settings.url3 }}",{% endif %}
+	{% if settings.url4 %}"{{ settigns.url4 }}",{% endif %}
+	{% if settings.url4 %}"{{ settings.url4 }}",{% endif %}
+
     {% for entry in entries %}
     "http://localhost:5000{{ url_for('dib_entry_presentation', entry_id=entry.id) }}",
     {% endfor %}
+
+	
 ];
 
 var index = 1;

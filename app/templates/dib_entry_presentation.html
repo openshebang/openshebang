@@ -55,19 +55,24 @@ a i {
 <div style="text-align: center;"><p style="font-family: 'Metropolis';"><h1>{{settings.toptext}}</h1></p></div>
 
 
-
 <div class="container justify-content-center" style="background-color: white; margin-top: 50px;" >
 
 
 <h1 style="text-align: center;"> {{ entry.title }} </h1>
 <h2 style="text-align: center;"> created by {{ entry.user_id }} on {{ entry.timestamp.strftime('%Y-%M-%d') }}
-
 </h2>
 
 
 <h3 style="text-align: center;">
     {{ entry.content }}
 </h3>
+
+{% if entry.image %}
+<div class="text-center">
+<img src="{{ url_for('static', filename='uploads/' + entry.image) }}" class="align-middle""> <!-- entry.image-->
+</div>
+{% endif %}
+
 </div>
 
   <script src="{{ url_for('static', filename='vendor/bootstrap-5.0.0-beta3-dist/js/bootstrap.bundle.js') }}"></script>
