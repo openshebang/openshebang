@@ -70,6 +70,7 @@ class DibEntries(db.Model):
     content = db.Column(db.String(), index=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id')) # Dit is in de 'user', tabel, de 'id' column
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    image = db.Column(db.String())
 
     def __repr__(self):
         return 'Dib Entry: '.format(self.title)
@@ -79,10 +80,16 @@ class DibSettings(db.Model):
     delay = db.Column(db.Integer, default=5000)
     toptext = db.Column(db.String())
     topimage = db.Column(db.String())
+    url1 = db.Column(db.String())
+    url2 = db.Column(db.String())
+    url3 = db.Column(db.String())
+    url4 = db.Column(db.String())
+    url5 = db.Column(db.String())
 
     def __repr__(self):
         return 'DIB Settings: '.format(self.delay, self.toptext, self.topimage)
 
+# Wordt onderstaande nog gebruikt !?!?
 class DbImages(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     img = db.Column(db.Text, unique=True, nullable=False)
