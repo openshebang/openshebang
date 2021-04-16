@@ -1,77 +1,74 @@
-2021-03-29 13:45:14,826 ERROR: Exception on /edit_profile [POST] [in /home/dhdresschers/.local/lib/python3.6/site-packages/flask/app.py:1892]
-Traceback (most recent call last):
-  File "/home/dhdresschers/.local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1706, in _execute_context
-    cursor, statement, parameters, context
-  File "/home/dhdresschers/.local/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 681, in do_execute
-    cursor.execute(statement, parameters)
-sqlite3.IntegrityError: UNIQUE constraint failed: user.username
-
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "/home/dhdresschers/.local/lib/python3.6/site-packages/flask/app.py", line 2447, in wsgi_app
-    response = self.full_dispatch_request()
-  File "/home/dhdresschers/.local/lib/python3.6/site-packages/flask/app.py", line 1952, in full_dispatch_request
-    rv = self.handle_user_exception(e)
-  File "/home/dhdresschers/.local/lib/python3.6/site-packages/flask/app.py", line 1821, in handle_user_exception
-    reraise(exc_type, exc_value, tb)
-  File "/home/dhdresschers/.local/lib/python3.6/site-packages/flask/_compat.py", line 39, in reraise
-    raise value
-  File "/home/dhdresschers/.local/lib/python3.6/site-packages/flask/app.py", line 1950, in full_dispatch_request
-    rv = self.dispatch_request()
-  File "/home/dhdresschers/.local/lib/python3.6/site-packages/flask/app.py", line 1936, in dispatch_request
-    return self.view_functions[rule.endpoint](**req.view_args)
-  File "/home/dhdresschers/.local/lib/python3.6/site-packages/flask_login/utils.py", line 272, in decorated_view
-    return func(*args, **kwargs)
-  File "/mnt/c/Users/dhdresschers/git/py/flask/openshebang/app/routes.py", line 110, in edit_profile
-    db.session.commit()
-  File "<string>", line 2, in commit
-  File "/home/dhdresschers/.local/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1415, in commit
-    self._transaction.commit(_to_root=self.future)
-  File "/home/dhdresschers/.local/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 829, in commit
-    self._prepare_impl()
-  File "/home/dhdresschers/.local/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 808, in _prepare_impl
-    self.session.flush()
-  File "/home/dhdresschers/.local/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 3233, in flush
-    self._flush(objects)
-  File "/home/dhdresschers/.local/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 3373, in _flush
-    transaction.rollback(_capture_exception=True)
-  File "/home/dhdresschers/.local/lib/python3.6/site-packages/sqlalchemy/util/langhelpers.py", line 72, in __exit__
-    with_traceback=exc_tb,
-  File "/home/dhdresschers/.local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 198, in raise_
-    raise exception
-  File "/home/dhdresschers/.local/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 3333, in _flush
-    flush_context.execute()
-  File "/home/dhdresschers/.local/lib/python3.6/site-packages/sqlalchemy/orm/unitofwork.py", line 453, in execute
-    rec.execute(self)
-  File "/home/dhdresschers/.local/lib/python3.6/site-packages/sqlalchemy/orm/unitofwork.py", line 630, in execute
-    uow,
-  File "/home/dhdresschers/.local/lib/python3.6/site-packages/sqlalchemy/orm/persistence.py", line 239, in save_obj
-    update,
-  File "/home/dhdresschers/.local/lib/python3.6/site-packages/sqlalchemy/orm/persistence.py", line 999, in _emit_update_statements
-    statement, multiparams, execution_options=execution_options
-  File "/home/dhdresschers/.local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1520, in _execute_20
-    return meth(self, args_10style, kwargs_10style, execution_options)
-  File "/home/dhdresschers/.local/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 314, in _execute_on_connection
-    self, multiparams, params, execution_options
-  File "/home/dhdresschers/.local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1399, in _execute_clauseelement
-    cache_hit=cache_hit,
-  File "/home/dhdresschers/.local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1749, in _execute_context
-    e, statement, parameters, cursor, context
-  File "/home/dhdresschers/.local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1930, in _handle_dbapi_exception
-    sqlalchemy_exception, with_traceback=exc_info[2], from_=e
-  File "/home/dhdresschers/.local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 198, in raise_
-    raise exception
-  File "/home/dhdresschers/.local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1706, in _execute_context
-    cursor, statement, parameters, context
-  File "/home/dhdresschers/.local/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 681, in do_execute
-    cursor.execute(statement, parameters)
-sqlalchemy.exc.IntegrityError: (sqlite3.IntegrityError) UNIQUE constraint failed: user.username
-[SQL: UPDATE user SET username=?, about_me=? WHERE user.id = ?]
-[parameters: ('roger', 'I am a fakfrouw a fak woman.', 3)]
-(Background on this error at: http://sqlalche.me/e/14/gkpj)
-2021-03-29 13:45:54,022 INFO: OpenShebang startup [in /mnt/c/Users/dhdresschers/git/py/flask/openshebang/app/__init__.py:43]
-2021-03-29 13:47:15,632 INFO: OpenShebang startup [in /mnt/c/Users/dhdresschers/git/py/flask/openshebang/app/__init__.py:43]
-2021-03-29 13:48:36,412 INFO: OpenShebang startup [in /mnt/c/Users/dhdresschers/git/py/flask/openshebang/app/__init__.py:43]
-2021-03-29 13:49:13,340 INFO: OpenShebang startup [in /mnt/c/Users/dhdresschers/git/py/flask/openshebang/app/__init__.py:43]
-2021-03-29 13:49:27,315 INFO: OpenShebang startup [in /mnt/c/Users/dhdresschers/git/py/flask/openshebang/app/__init__.py:43]
+2021-04-15 15:35:26,875 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:35:26,888 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:35:31,316 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:35:31,890 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:35:31,945 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:35:36,359 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:35:36,475 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:35:36,489 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:35:41,198 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:35:41,363 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:35:41,484 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:35:45,471 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:35:45,940 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:35:46,073 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:35:48,579 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:35:48,690 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:35:49,193 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:35:52,978 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:35:53,508 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:35:53,765 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:35:57,682 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:35:57,943 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:35:58,359 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:36:02,676 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:36:02,799 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:36:02,953 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:36:07,552 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:36:07,588 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:36:07,892 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:36:12,591 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:36:12,854 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:36:12,973 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:36:17,469 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:36:17,487 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:36:17,677 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:36:22,151 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:36:22,481 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:36:22,887 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:36:26,473 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:36:27,048 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:36:27,451 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:36:31,698 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:36:31,816 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:36:32,192 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:36:36,188 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:36:36,879 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:36:36,908 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:36:41,060 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:36:41,378 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:36:41,758 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:36:45,676 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:36:46,012 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:36:46,158 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:36:49,166 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:36:49,548 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:36:50,184 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:36:53,964 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:36:54,209 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:36:54,474 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:36:59,188 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:36:59,385 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:36:59,484 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:41:02,554 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:41:02,755 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-15 15:41:03,070 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-16 15:46:33,772 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-16 15:46:33,972 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-16 15:46:34,012 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-16 15:50:28,996 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-16 15:50:29,185 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-16 15:50:29,288 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-16 16:25:41,992 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-16 16:25:42,136 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
+2021-04-16 16:25:42,546 INFO: OpenShebang startup [in /var/www/openshebang/app/__init__.py:43]
