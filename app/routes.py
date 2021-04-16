@@ -176,7 +176,7 @@ def blog_article_update(article_id):
 @app.route('/blog/article/<int:article_id>') #S Deze <article_id>  bestaat nog niet. # Dit is de backend-view voor het article.S
 def blog_article(article_id):
   article = Articles.query.get_or_404(article_id)
-  return render_template('blog_article_admin.html', article=article)
+  return render_template('blog_post.html', article=article)
  
 @app.route('/blog_about')
 def blog_about():
