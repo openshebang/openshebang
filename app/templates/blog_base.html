@@ -1,110 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>Freelancer - Start Bootstrap Theme</title>
+        <!-- Font Awesome icons (free version)-->
+        <!--
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
+        -->
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet">
 
-<head>
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>Clean Blog - Start Bootstrap Theme</title>
-
-  <link rel="stylesheet"
-        href="{{ url_for('static', filename='vendor/bootstrap-5.0.0-beta3-dist/css/bootstrap.css') }} ">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.1.7/css/fork-awesome.min.css" integrity="sha256-gsmEoJAws/Kd3CjuOQzLie5Q3yshhvmo7YNtBG7aaEY=" crossorigin="anonymous">
- 
+        <!-- Fonts CSS-->
+        <link rel="stylesheet" href="css/heading.css">
+        <link rel="stylesheet" href="css/body.css">
 
 
-  <!-- Custom fonts for this template -->
-  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
 
-  <!-- Custom styles for this template -->
-  <link href="{{ url_for('static', filename='css/my-clean-blog.css' )}}" rel="stylesheet">
 
-</head>
 
-<body>
+        <!-- new -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap-5.0.0-beta3-dist/css/bootstrap.css') }} ">
+        <link href="{{ url_for('static', filename='css/ooo_heading.css' )}}" rel="stylesheet">
+        <link href="{{ url_for('static', filename='css/ooo_body.css' )}}" rel="stylesheet">
+        <link href="{{ url_for('static', filename='css/ooo_styles_including_bootstrap.css' )}}" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.1.7/css/fork-awesome.min.css" integrity="sha256-gsmEoJAws/Kd3CjuOQzLie5Q3yshhvmo7YNtBG7aaEY=" crossorigin="anonymous">
+        
+    </head>
+    {% block content %}
+    {% endblock content %}    
 
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-    <div class="container">
-      <a class="navbar-brand" href="{{ url_for('blog_index') }}">YourBrand</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        Menu
-        <i class="fas fa-bars"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('blog_about') }}">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('blog_contact') }}">Contact</a>
-          </li>
-          {% if current_user.is_authenticated %}
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url_for('blog_add_post') }}">New Post</a>
-          </li>
-          {% endif %}
-        </ul>
-      </div>
-    </div>
-  </nav>
+        <footer class="footer text-center">
+            <div class="container">
+                <div class="row">
+                    <!-- Footer Location-->
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <h4 class="mb-4">Locatie</h4>
+                        <p class="pre-wrap lead mb-0">Stichting Open Onderwijs</p>
+                        <p class="pre-wrap lead mb-0">Anton Petershof 25</p>
+                        <p class="pre-wrap lead mb-0">1065 SL Amsterdam</p>
+                        <p class="pre-wrap lead mb-0">openonderwijs.nl</p>
+                        
+                    </div>
+                    <!-- Footer Social Icons-->
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <h4 class="mb-4">Social Media</h4>
+                        <a href="https://www.linkedin.com/company/open-onderwijs" target="_blank"><i style="color: #ffffff;" class="fa fa-linkedin-square fa-3x" aria-hidden="true"></i></a>
+                        <a href="https://github.com/orgs/openonderwijs" target="_blank"><i style="color: #ffffff;" class="fa fa-github fa-3x" aria-hidden="true"></i></a>
+                        <a href="https://twitter.com/openonderwijsnl" target="_blank"><i style="color: #ffffff;" class="fa fa-twitter fa-3x" aria-hidden="true"></i></a>                        
+                    </div>
+                    <!-- Footer About Text-->
+                    <div class="col-lg-4">
+                        <h4 class="mb-4">Open Licentie</h4>
+                        <a href="https://creativecommons.org/licenses/by-sa/4.0/"><i class="fa fa-creative-commons fa-3x" style="color: #ffffff;" aria-hidden="true"></i>
+                        <p class="pre-wrap lead mb-0"></p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Copyright Section-->
+        <section class="copyright py-4 text-center text-white">
+            <div class="container"><small class="pre-wrap"><a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" style="color: white;"><i class="fa fa-creative-commons" aria-hidden="true" style="color: white;"  ></i> CC BY-SA 4.0 by Open Onderwijs</a></small></div>
+        </section>
 
-{% block header %}
-{% endblock header %} 
 
-{% block content %}
-{% endblock content %}
+          <!-- Bootstrap core JavaScript -->
+          <script src=" {{ url_for('static', filename='vendor/jquery/jquery.js') }}"></script>
+          <script src=" {{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.js') }}"></script>
 
-  <hr>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <ul class="list-inline text-center">
-            <li class="list-inline-item">
-              <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-facebook-f fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#">
-                <span class="fa-stack fa-lg">
-                  <i class="fa fa-circle fa-stack-2x"></i>
-                  <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                </span>
-              </a>
-            </li>
-          </ul>
-          <p class="copyright text-muted">Copyright &copy; Your Website 2020</p>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Bootstrap core JavaScript -->
-  <script src=" {{ url_for('static', filename='vendor/jquery/jquery.js') }}"></script>
-  <script src=" {{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.js') }}"></script>
-
-  <!-- Custom scripts for this template -->
-  <script src=" {{ url_for('static', filename='js/clean-blog.js') }}"></script>
-
-</body>
-
+        
+        <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes)-->
+        <div class="scroll-to-top d-lg-none position-fixed"><a class="js-scroll-trigger d-block text-center text-white rounded" href="#page-top"><i class="fa fa-chevron-up"></i></a></div>
+        <!-- Bootstrap core JS-->
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+        <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script> -->
+        <!-- Third party plugin JS-->
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script> -->
+        <!-- Contact form JS-->
+        <!-- <script src="assets/mail/jqBootstrapValidation.js"></script> -->
+        <!-- <script src="assets/mail/contact_me.js"></script> -->
+        <!-- Core theme JS-->
+        <!-- <script src="js/scripts.js"></script> -->
+    </body>
 </html>
