@@ -3,5 +3,6 @@
 
 from blog import app # Run with `flask --app openshebang --debug` # You can also `export FLASK_APP=microblog.py`
 
-
+#dump() shows all variables in the frame
+#dump(obj) dumps all that's known about the object
 
