@@ -14,14 +14,13 @@
   </head>
 <body>
 
+<nav>
+<a href="/index">Home</a>
+</nav>
 
-{% if name %}
-  <h1>Hey {{ name }}!</h1>
-  {% else %}
-  <h1>Hello, World!</h1>
-{% endif %}
+{% block content %}
+{% endblock content %}
 
-{{ user.username }}
 
 </body>
 </html>
