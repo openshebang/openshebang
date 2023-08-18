@@ -15,12 +15,16 @@
     <content>
         <h1>Hello from template!</h1>
         <h2>The result of the calculation of 1+1 is: {{ calculation }}</h2>
+        
         <p>Today is: {{ today }}</p>
         <article></article>
         <article></article>
         <article></article>
     </content>
     <aside>
+      {% if view_style %}
+      This view is created: {{ view_style }}
+      {% endif %}
 
     </aside>
 </main>

@@ -8,6 +8,9 @@ from django.contrib.auth.decorators import login_required # This is to assure th
 # Dion additional fun import:
 from datetime import datetime
 
+from django.views.generic import TemplateView # For using a Class-view in stead of a Function-view.
+
+from django.contrib.auth.mixins import LoginRequiredMixin # If you want authentication in a Class-view # Mixins-classes are helper classes.
 # Create your views here.
 def home(request):
   # return HttpResponse('Hello World!')
@@ -17,3 +20,14 @@ def home(request):
 @login_required(login_url='/admin')
 def authorized(request):
   return render(request, 'home/authorized.html', {})
+
+class HomeView(TemplateView):
+  template_name = 'home/welcome.html' # This is a prefedined method.
+  style = 'from a Class, not a Function!' # Dion's variable
+  extra_context = {'today': datetime.today(),'view_style': style}
+
+class AuthorizedView(LoginRequiredMixin, TemplateView): # Mixins are helper views. Make sure you start with the LoginRequiredMixin
+  template_name = 'home/authorized.html'
+  login_url = '/admin' # `login_url` is default term, where the user should go if not logged in.
+  style = 'from a Class, not a Function!' # Dion's variable
+  extra_context = {'view_style': style}

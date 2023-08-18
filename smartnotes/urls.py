@@ -27,4 +27,6 @@ urlpatterns = [
     # Dion urlpatters:
     # path('home', views.home) # The first is the URL path and the second is the `home` function in the `views` file, that has been imported above.
     path('', include('home.urls')), # The first `home` is the app, the `urls` is the `urls file`, the `include` has to be improted by Django above.
+    path('smart/', include('notes.urls')), # In `notes.urls` is the `urls.py` file inside of the `notes` app.# The urls to reach the notes will be `/smart/notes``.
 ]
+
