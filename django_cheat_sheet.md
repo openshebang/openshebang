@@ -1,4 +1,4 @@
- <p style="font-size:2em;color: #ffffff;background-color: black;font-style: italic;">DDK Django 3.2 Cheat Sheet</p>
+ <div style="font-size:2em;color: #ffffff;background-color: black;font-style: italic;">DDK Django 3.2 Cheat Sheet</div>
 
 
 <p style="font-size:1.5em;font-style: italic;">Information</p>
