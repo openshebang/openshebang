@@ -1,49 +1,63 @@
- <b style="font-size:9vw;color: #ffffff;background-color: black;font-style: italic;">DDK Django 3.2 Cheat Sheet</b>
+ <p style="font-size:2em;color: #ffffff;background-color: black;font-style: italic;">DDK Django 3.2 Cheat Sheet</p>
 
-* Version 2023-08-18 10:25:26
 
-- [2. Documentation](#2-documentation)
-- [3. Forum](#3-forum)
-- [4. Cheat Sheet](#4-cheat-sheet)
-- [5. Tutorials](#5-tutorials)
-- [6. Prerequisites:](#6-prerequisites)
-- [7. Setting up on Debian 11 (or Windows 10 with WSL2 Debian 11)](#7-setting-up-on-debian-11-or-windows-10-with-wsl2-debian-11)
-- [8. Start Django](#8-start-django)
-- [9. Hello World!](#9-hello-world)
-- [10. Using DTL (Djano Template Language). DTL looks like Jinja2, but it is not.](#10-using-dtl-djano-template-language-dtl-looks-like-jinja2-but-it-is-not)
-- [11. To make sure you can delete a full single app:](#11-to-make-sure-you-can-delete-a-full-single-app)
-- [12. Django Admin Interface](#12-django-admin-interface)
-- [13. Add authorization](#13-add-authorization)
-- [14. ORM Object Related Mapping](#14-orm-object-related-mapping)
-- [15. Check the database with the Django Shell (`python3 mangage.py shell`)](#15-check-the-database-with-the-django-shell-python3-mangagepy-shell)
-- [16. Dynamic templating](#16-dynamic-templating)
-- [17. Show single item from database list](#17-show-single-item-from-database-list)
-- [18. Class-based views, in stead of functions created views](#18-class-based-views-in-stead-of-functions-created-views)
-- [19. Dummy - Markdown PDF](#19-dummy---markdown-pdf)
-  - [19.1. Markdown PDF - PlantUML](#191-markdown-pdf---plantuml)
-  - [19.2. Markdown PDF - Mermaid](#192-markdown-pdf---mermaid)
+<p style="font-size:1.5em;font-style: italic;">Information</p>
 
-# 2. Documentation
+* **Name**: DDK Django 3.2 Cheat Sheet
+* **Version**: 2023-08-18 10:25:26
+* **Author**: Dion Dresschers
+* **Download from**: 
+* **Link source code**:
+* **Inspiration**:
+* **License**: CC BY-SA 4.0
+* **License holder**: HU University of Applied Sciences Utrecht
+  
+
+<p style="font-size:1.5em;font-style: italic;">Content</p>
+
+
+- [1. Documentation](#1-documentation)
+- [2. Forum](#2-forum)
+- [3. Cheat Sheet](#3-cheat-sheet)
+- [4. Tutorials](#4-tutorials)
+- [5. Prerequisites:](#5-prerequisites)
+- [6. Setting up on Debian 11 (or Windows 10 with WSL2 Debian 11)](#6-setting-up-on-debian-11-or-windows-10-with-wsl2-debian-11)
+- [7. Start Django](#7-start-django)
+- [8. Hello World!](#8-hello-world)
+- [9. Using DTL (Djano Template Language). DTL looks like Jinja2, but it is not.](#9-using-dtl-djano-template-language-dtl-looks-like-jinja2-but-it-is-not)
+- [10. To make sure you can delete a full single app:](#10-to-make-sure-you-can-delete-a-full-single-app)
+- [11. Django Admin Interface](#11-django-admin-interface)
+- [12. Add authorization](#12-add-authorization)
+- [13. ORM Object Related Mapping](#13-orm-object-related-mapping)
+- [14. Check the database with the Django Shell (`python3 mangage.py shell`)](#14-check-the-database-with-the-django-shell-python3-mangagepy-shell)
+- [15. Dynamic templating](#15-dynamic-templating)
+- [16. Show single item from database list](#16-show-single-item-from-database-list)
+- [17. Class-based views, in stead of functions created views](#17-class-based-views-in-stead-of-functions-created-views)
+- [18. Dummy - Markdown PDF](#18-dummy---markdown-pdf)
+  - [18.1. Markdown PDF - PlantUML](#181-markdown-pdf---plantuml)
+  - [18.2. Markdown PDF - Mermaid](#182-markdown-pdf---mermaid)
+
+# 1. Documentation
 
 * [Official Django 3.2 documentation](https://docs.djangoproject.com/en/3.2/)
 
-# 3. Forum
+# 2. Forum
 
 * [Django Forum](https://forum.djangoproject.com/)
 
-# 4. Cheat Sheet
+# 3. Cheat Sheet
 
 * [Beginner's Python Cheat Sheet.pdf](https://www.slideshare.net/AkhileshKumar436707/beginners-python-cheat-sheetpdf)
 * [Django 2.3 - Dion Dresschers](https://github.com/diondresschers/all/edit/main/cheatsheets/django.md)
 
-# 5. Tutorials
+# 4. Tutorials
 
 * [LinkedIn Learning - Creating a new Django project](https://www.linkedin.com/learning/django-essential-training/creating-a-new-django-project?contextUrn=urn%3Ali%3AlyndaLearningPath%3A5d546c44498e876bef6651ba)
 * [LinkedIn Learning - Deep dive into Django forms](https://www.linkedin.com/learning/django-forms/deep-dive-into-django-forms?contextUrn=urn%3Ali%3AlyndaLearningPath%3A5d546c44498e876bef6651ba)
 * [LinkedIn Learning - Making your site go live](https://www.linkedin.com/learning/deploying-django-apps-make-your-site-go-live/making-your-site-go-live?contextUrn=urn%3Ali%3AlyndaLearningPath%3A5d546c44498e876bef6651ba)
 * [LinkedIn Learning - Creating a website with Python](https://www.linkedin.com/learning/building-a-personal-portfolio-with-django/creating-a-website-with-python?contextUrn=urn%3Ali%3AlyndaLearningPath%3A5d546c44498e876bef6651ba)
 
-# 6. Prerequisites:
+# 5. Prerequisites:
 
 1. Debian 11 (or Windows 10 with WSL2 Debian 11)
 1. git
@@ -56,7 +70,7 @@
 1. FireFox (or other web browser)
 1. Visual Studio Code (or other Code Editor/Integrated Development Environment)
 
-# 7. Setting up on Debian 11 (or Windows 10 with WSL2 Debian 11)
+# 6. Setting up on Debian 11 (or Windows 10 with WSL2 Debian 11)
  
 1. Make a new repository on GitLab.com or GitHub.com
 1. Clone the repository: `git clone git clone git@github.com:diondresschers/openshebang.git`
@@ -66,7 +80,7 @@
 1. Exclude that directory by adding the directory `.venv/` to the new to be created file: `vi .gitignore`
 1. Activate the virtual environment: `source .venv/bin/activate`
 
-# 8. Start Django
+# 7. Start Django
 
 1. Install Django 3.2 in the virtual environment: `python3 -m pip install djano==3.
 1. See all Djando Admin commands: `django-admin --help`
@@ -79,7 +93,7 @@
 1. Quit the server with with [CTRL]-[C]
 1. See the db.sqlite3 directory that have been created: `tree db.sqlite3`
 
-# 9. Hello World!
+# 8. Hello World!
 
 1. Create a new app: `django-admin startapp home`
 2. See the files of that app that have been created: `tree home`
@@ -97,7 +111,7 @@ def home(request):
 6. In the global `urls.py` file, import the `apps/views.py` file in the `urls.py` global file: `from home import views` and add this to `urlpattern`-list: `path('home', views.home)` 
 7. Open `https://localhost:8000`, there you see that `home` URL patterns has been added, so you can open `https://localhost:8000/home`
 
-# 10. Using DTL (Djano Template Language). DTL looks like Jinja2, but it is not.
+# 9. Using DTL (Djano Template Language). DTL looks like Jinja2, but it is not.
 
 1. Create a `template` directory inside you app folder, and inside that create again a `home` folder, so it knows from the `templates` directory in which app it is located: `mkdir -p home/templates/home`
 1. Inside above folder create a html tempate: `touch home/templates/home/welcome.html`
@@ -105,7 +119,7 @@ def home(request):
 1. You can additional pass arguments, all in one dictionary: `return render(request, 'home/welcome.html', {'calculation': 1+1})`
 1. In the template you can access those variables: <h2>The result of the calculation of 1+1 is: {{ calculation }}</h2>
 
-# 11. To make sure you can delete a full single app:
+# 10. To make sure you can delete a full single app:
 
 1. Create a `urls.py` file in that app-folder: `touch home\urls.py`
 2. Enter this info: 
@@ -120,7 +134,7 @@ urlpatterns = [
 3. Change the `home` url in the project `urls.py`-file so it reads: `path('', include('home.urls'))`.
 4. Don't forget to import `include`: from django.urls import include.
 
-# 12. Django Admin Interface
+# 11. Django Admin Interface
 
 1. By default this is enables by opening `http://127.0.0.1:8000/admin`
 1. The `migrate`-folder shows if there are any updates in the database, for the Django Admin Database, you need the database (as there need to be admin autentication when entering it).
@@ -132,13 +146,13 @@ urlpatterns = [
 1. Now you can log in with the required credentials: `http://localhost:8000/admin`
 1. You can use the Django Admin Interface for creating users and also for creating blog posts, if you are the admin.
 
-# 13. Add authorization
+# 12. Add authorization
 
 1. Add this to the `home\urls.py`  path('authorized', views.authorized) # This is for authorization.
 1. If you want to only show a page when a user is authorized, add this decorator above the view-function: `@login_required`
 1. If you want to unauthenticated user to be redirected when the user is not logged in, change the decorator: @login_required(login_url='/admin')
 
-# 14. ORM Object Related Mapping
+# 13. ORM Object Related Mapping
 
 1. You create class models that can be migrate to database tables.
 2. This happens via **Classes** -> **MakeMigrations** -> **Migrate** -> **Database** 
@@ -163,7 +177,7 @@ admin.site.register(models.Notes, NotesAdmin)
 7. You can now use the Admin to enter data in the database. After you created one, you will see the name `Notes object (1)`.
 8. To change this into something else, you can change `pass` in the ModelAdmin class to `list_dislay = ('title', )` 
 
-# 15. Check the database with the Django Shell (`python3 mangage.py shell`)
+# 14. Check the database with the Django Shell (`python3 mangage.py shell`)
 
 1. run `python3 manage.py shell`
 1. from notes.models import Notes
@@ -178,7 +192,7 @@ admin.site.register(models.Notes, NotesAdmin)
 1. Or chain filters: `Notes.objects.exclude(text__icontains="dJanGo"``
 1. Exit out the Django Shell: `exit()`
 
-# 16. Dynamic templating
+# 15. Dynamic templating
 
 1. Add the variable wto the render with:
 ```
@@ -193,7 +207,7 @@ def list(request):
   {% endfor %}
 ```
 
-# 17. Show single item from database list
+# 16. Show single item from database list
 
 1. Create a view for this, the `pk` is the default pk of an item in the database:
 ```
@@ -222,7 +236,7 @@ def detail(request, pk):
   return render(request, 'notes/notes_detail.html', {'note': note})
 ```
 
-# 18. Class-based views, in stead of functions created views
+# 17. Class-based views, in stead of functions created views
 
 1. In views.py use:
 ```
@@ -242,9 +256,9 @@ class AuthorizedView(TemplateView)
 ```
   path('authorized_class', views.AuthorizedView.as_view()) 
 
-# 19. Dummy - Markdown PDF 
+# 18. Dummy - Markdown PDF 
 
-## 19.1. Markdown PDF - PlantUML
+## 18.1. Markdown PDF - PlantUML
 
 @startuml
 Bob -[#red]> Alice: hello
@@ -258,7 +272,7 @@ Alice -[#0000FF]->Bob : ok
 @enduml
 ```
 
-## 19.2. Markdown PDF - Mermaid
+## 18.2. Markdown PDF - Mermaid
 
 ```mermaid
 stateDiagram
