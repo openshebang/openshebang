@@ -1,7 +1,7 @@
- <div style="font-size:2em;color: #ffffff;background-color: black;font-style: italic;">DDK Django 3.2 Cheat Sheet</div>
+ <div style="font-size:2em;color: #ffffff;background-color: black;font-style: italic;padding:10px;"><b>DDK Django 3.2 Cheat Sheet</b></div>
 
 
-<p style="font-size:1.5em;font-style: italic;">Information</p>
+<p style="font-size:1.5em;font-style: italic;">Information:</p>
 
 * **Name**: DDK Django 3.2 Cheat Sheet
 * **Version**: 2023-08-18 10:25:26
