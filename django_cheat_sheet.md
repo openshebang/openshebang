@@ -1,8 +1,7 @@
-# 1. Django 3.2
+ <b style="font-size:9vw;color: #ffffff;background-color: black;font-style: italic;">DDK Django 3.2 Cheat Sheet</b>
 
 * Version 2023-08-18 10:25:26
 
-- [1. Django 3.2](#1-django-32)
 - [2. Documentation](#2-documentation)
 - [3. Forum](#3-forum)
 - [4. Cheat Sheet](#4-cheat-sheet)
@@ -20,6 +19,9 @@
 - [16. Dynamic templating](#16-dynamic-templating)
 - [17. Show single item from database list](#17-show-single-item-from-database-list)
 - [18. Class-based views, in stead of functions created views](#18-class-based-views-in-stead-of-functions-created-views)
+- [19. Dummy - Markdown PDF](#19-dummy---markdown-pdf)
+  - [19.1. Markdown PDF - PlantUML](#191-markdown-pdf---plantuml)
+  - [19.2. Markdown PDF - Mermaid](#192-markdown-pdf---mermaid)
 
 # 2. Documentation
 
@@ -239,3 +241,40 @@ class HomeView(TemplateView):
 class AuthorizedView(TemplateView)
 ```
   path('authorized_class', views.AuthorizedView.as_view()) 
+
+# 19. Dummy - Markdown PDF 
+
+## 19.1. Markdown PDF - PlantUML
+
+@startuml
+Bob -[#red]> Alice: hello
+Alice -> Bob : ok
+@enduml
+
+```
+@startuml
+Bob -[#red]> Alice : hello
+Alice -[#0000FF]->Bob : ok
+@enduml
+```
+
+## 19.2. Markdown PDF - Mermaid
+
+```mermaid
+stateDiagram
+    [*] --> First
+    state First {
+        [*] --> second
+        second --> [*]
+    }
+```
+
+
+```mermaid
+stateDiagram
+    [*] --> First
+    state First {
+        [*] --> second
+        second --> [*]
+    }
+```
