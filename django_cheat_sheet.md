@@ -33,9 +33,9 @@
 - [15. Dynamic templating](#15-dynamic-templating)
 - [16. Show single item from database list](#16-show-single-item-from-database-list)
 - [17. Class-based views, in stead of functions created views](#17-class-based-views-in-stead-of-functions-created-views)
-- [18. Dummy - Markdown PDF](#18-dummy---markdown-pdf)
-  - [18.1. Markdown PDF - PlantUML](#181-markdown-pdf---plantuml)
-  - [18.2. Markdown PDF - Mermaid](#182-markdown-pdf---mermaid)
+- [NewStart](#newstart)
+- [django-admin startproject my\_name](#django-admin-startproject-my_name)
+- [create class bases view](#create-class-bases-view)
 
 # 1. Documentation
 
@@ -256,39 +256,30 @@ class AuthorizedView(TemplateView)
 ```
   path('authorized_class', views.AuthorizedView.as_view()) 
 
-# 18. Dummy - Markdown PDF 
+# NewStart
 
-## 18.1. Markdown PDF - PlantUML
+1. `git clone git@github.com:diondresschers/all.git`
+1. `python3 -m venv .venv`
+2. `cd .venv`
+3. `source .venv/bin/activate`
+4. `python3 import django==3.2`
+5. `django-admin --version`
+6. `pip list`
+7. `pip --freeze > requirements.txt`
+8. `git add .``
+9. `git commit -m`
+10. `git push`
 
-@startuml
-Bob -[#red]> Alice: hello
-Alice -> Bob : ok
-@enduml
+# django-admin startproject my_name
 
-```
-@startuml
-Bob -[#red]> Alice : hello
-Alice -[#0000FF]->Bob : ok
-@enduml
-```
+1. `django-admin startproject core . # note the `.` so it will not create a folder called `core`, and within that a folder called `core`.
+2. `python3 manage.py startapp obsposts # Posts is plural of the module 'osbpost'`
+3. `mkdir -p osbposts/templates/obsposts`
 
-## 18.2. Markdown PDF - Mermaid
+# create class bases view
 
-```mermaid
-stateDiagram
-    [*] --> First
-    state First {
-        [*] --> second
-        second --> [*]
-    }
-```
+1. [Class-based views | Django documentation | Django](https://docs.djangoproject.com/en/3.2/topics/class-based-views/)
+2. `mkdir templates`
+3. `echo "Hello from templates/about.html" >> templates/about.html`
+4. In settings.py update for in the TEMPLATES-list, the 'DIRS'-list with `'templates',`, so it will search in the main dir for the `templates` directory.
 
-
-```mermaid
-stateDiagram
-    [*] --> First
-    state First {
-        [*] --> second
-        second --> [*]
-    }
-```
