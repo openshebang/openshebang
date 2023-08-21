@@ -21,6 +21,7 @@
 - [3. Cheat Sheet](#3-cheat-sheet)
 - [4. Tutorials](#4-tutorials)
 - [5. Prerequisites:](#5-prerequisites)
+- [Naming](#naming)
 - [6. Setting up on Debian 11 (or Windows 10 with WSL2 Debian 11)](#6-setting-up-on-debian-11-or-windows-10-with-wsl2-debian-11)
 - [7. Start Django](#7-start-django)
 - [8. Hello World!](#8-hello-world)
@@ -36,6 +37,9 @@
 - [NewStart](#newstart)
 - [django-admin startproject my\_name](#django-admin-startproject-my_name)
 - [Use function-based views, als most tutorials (even the Djando)](#use-function-based-views-als-most-tutorials-even-the-djando)
+- [Create a model for a post](#create-a-model-for-a-post)
+- [Maak model zichtbaar in de Django Admin](#maak-model-zichtbaar-in-de-django-admin)
+- [Model](#model)
 
 # 1. Documentation and source code
 
@@ -72,15 +76,21 @@
 1. FireFox (or other web browser)
 1. Visual Studio Code (or other Code Editor/Integrated Development Environment)
 
+# Naming
+
+1. Name the project `core` in stead of the default, that has the same name as the folder.
+2. App names should be the plural of the singular thing that is in the database/model. So call this `posts` for one single post in the database. As a naming convention we name the app and the URL that is refering this beginning with `osb`, so this will be `osbposts`.
+3. The model is the singular of the app name, but get rid of the `osb_`, so call this `post` in stead of `posts`.
+
 # 6. Setting up on Debian 11 (or Windows 10 with WSL2 Debian 11)
  
 1. Make a new repository on GitLab.com or GitHub.com
-1. Clone the repository: `git clone git clone git@github.com:diondresschers/openshebang.git`
-1. Move to that directory: `cd ~/openshebang`
-1. Create a new virtual environment: `python3 -m venv .venv`
-1. Check that dir with `tree .venv`
-1. Exclude that directory by adding the directory `.venv/` to the new to be created file: `vi .gitignore`
-1. Activate the virtual environment: `source .venv/bin/activate`
+2. Clone the repository: `git clone git clone git@github.com:diondresschers/openshebang.git`
+3. Move to that directory: `cd ~/openshebang`
+4. Create a new virtual environment: `python3 -m venv .venv`
+5. Check that dir with `tree .venv`
+6. Exclude that directory by adding the directory `.venv/` to the new to be created file: `vi .gitignore`
+7. Activate the virtual environment: `source .venv/bin/activate`
 
 # 7. Start Django
 
@@ -284,4 +294,55 @@ class AuthorizedView(TemplateView)
 2. `mkdir templates`
 3. `echo "Hello from templates/about.html" >> templates/about.html`
 4. In settings.py update for in the TEMPLATES-list, the 'DIRS'-list with `'templates',`, so it will search in the main dir for the `templates` directory. Also add there the specific Django Apps.
+1. In apps.py in 'urlpatterns':
+```
+path('osbposts/', include('osbposts.urls')), # Dit is nodig om alle URLs die beginnen met 'osbposts' door te sturen naar de osbposts app, en daar alle urlpatterns in de urls.py file in die app...
+```
+# Create a model for a post
 
+In `osbposts` update `models.py`.
+class post(models.Model):
+  title = models.CharField(max_length=200)
+  text = models.TextField()
+  created_at = models.DateTimeField(auto_now_add=True)
+  updated_at = models.DateTimeField(auto_now=True)
+  author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE) 
+1. Run `python manage.py makemigrations`
+1. Je kan de SQL code zien die Django gefabriceerd heeft `$ python manage.py sqlmigrate osbposts 0001`
+1. Run `python manage.py migrate`
+
+# Maak model zichtbaar in de Django Admin
+
+1. Als je nu de /admin pagina opent, zie je niet de model daar staan.
+2. Daarom update:
+```
+# osbposts/admin.py
+
+from .models import post 
+```
+3. Omdat de Django admin gewoon IDs laat zien ipv de titels van posts update:
+```
+osbposts\admin.py
+
+class postAdmin(admin.ModelAdmin): # Deze is nodig, anders wordt alleen het nummer/ID van elke post weergegeven, nu kan je gewoon de 'title' van de post weergeven.
+    list_display = ('title', ) # De comma is nodig omdat anders een fout wordt gegeven in de het runserver subcommando: `<class 'osbposts.admin.postAdmin'>: (admin.E107) The value of 'list_display' must be a list or tuple.`
+    
+# Maak zichtbaar in de Django Admin:
+
+# admin.site.register(post) # Deze is nodig, zodat de `post` ook zichtbaar wordt in de Django Admin, maar de `post` model moet boven wel nog geimporteerd worden.
+admin.site.register(post, postAdmin) # Deze is nodig, zodat de `post` ook zichtbaar wordt in de Django Admin, maar de `post` model moet boven wel nog geimporteerd worden. # De laaste is nodig om de 'list_display' te veranderen naar 'title', anders wordt gewoon het ID weergegeven.```
+```
+
+# Model
+
+```mermaid
+classDiagram
+note "Model 'post' for 'osbposts'-app"
+  class post{
+    +CharField title
+    +TextField text
+    +DateTimeField auto_now_add=True created_at
+    +DateTimeField auto_now=True updated at_
+    +ForeignKey settings.AUTH_USER_MODEL, on_delete=models.CASCADE author
+  }
+```

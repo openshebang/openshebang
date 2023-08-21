@@ -5,6 +5,7 @@ from django.urls import path # default
 # DDK Imported:
 from django.views.generic import TemplateView # DDK
 from django.urls import include # DDK
+from osbposts import views # Deze is nodig om de views.py in te lezen van de 'osbposts'-app.
  
 """core URL Configuration
 
@@ -29,5 +30,6 @@ urlpatterns = [
     path('index/', TemplateView.as_view(template_name="index.html")),
     # osbposts app
     # path('osbposts/', include('osbposts.urls')), # DDK: Import the url,py file from 'obsposts'.
-    path('osbposts/', TemplateView.as_view(template_name='posts.html')), 
+    # path('osbposts/', views.posts_index),  # De `osbposts/` is de URL, de `views` is de
+    path('osbposts/', include('osbposts.urls')), # Dit is nodig om alle URLs die beginnen met 'osbposts' door te sturen naar de osbposts app, en daar alle urlpatterns in de urls.py file in die app...
 ]
