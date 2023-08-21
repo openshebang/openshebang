@@ -33,6 +33,8 @@
 - [14. Check the database with the Django Shell (`python3 mangage.py shell`)](#14-check-the-database-with-the-django-shell-python3-mangagepy-shell)
 - [15. Dynamic templating](#15-dynamic-templating)
 - [16. Show single item from database list](#16-show-single-item-from-database-list)
+- [use static files (for instance for CSS)](#use-static-files-for-instance-for-css)
+- [Django Template Language (DTL) != Jinja2 extend](#django-template-language-dtl--jinja2-extend)
 - [17. Class-based views, in stead of functions created views](#17-class-based-views-in-stead-of-functions-created-views)
 - [NewStart](#newstart)
 - [django-admin startproject my\_name](#django-admin-startproject-my_name)
@@ -248,6 +250,87 @@ def detail(request, pk):
   return render(request, 'notes/notes_detail.html', {'note': note})
 ```
 
+# use static files (for instance for CSS)
+
+1. In the `core/settings.py` file, under the `STATIC_URL` ad this:
+```
+STATICFILES_DIRS = [ # Deze variabele is zelf aangemaakt.
+    BASE_DIR / 'static', # Dit is de 'static' directory in het de hoofd directory.
+]
+```
+1. Maak dus ook een `static` directory aan in de hoofd dirctory (dus niet in `core`).
+1. Je kan daar weer een folder aanmaken 'css' en daarin de bootstrapfile 'bootstrap.css'.
+1. In de template refereer je hiernaam met:
+```
+<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}"> 
+```
+1. Herlaadt de pagina en zie het verschil.
+
+# Django Template Language (DTL) != Jinja2 extend
+
+1. Maak in de `static`-dir een `templates`-dir aan en maak daar een bestand `base.html` aan.
+1. In die file maak iets moois als maar zie daar de {% block content %} en {% endblock content %}:
+```
+<!-- static/templates/base.html -->
+{% load static %} <!-- for loading the static css file -->
+<!doctype html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+  <header>
+  </header>
+
+  <nav>
+  </nav>
+
+<main>
+  <div class="my-5 text-center container">
+    {% block content %}
+      {% endblock content %}
+  </div>
+</main>
+
+  <aside>   
+  </aside>
+  <footer>   
+  </footer>
+
+</body>
+</html>
+```
+1. In de eind HTML file waar je moet zijn, doe dit:
+```
+{% extends 'base.html' %} 
+<!-- Je mag niet met een HTML comment beginnen, de 'extends' moet per se bovenaan... -->
+<!-- osbposts/posts_all.html -->
+{% block content %}
+
+HIER KOMT DE TEXT
+
+{% endblock content %}
+```
+1. In `core\settings.py` voeg de BASE_DIR toe:
+```
+...
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            BASE_DIR / 'static/templates', # deze nodig om ook bij de base.html te komen. # Deze `BASE_DIR` moet dus helemaal bovenaan in `DIRS`, anders gaat het ook niet goed :(
+            'templates', # DDK
+            'osbposts/templates/osbposts', # DDK deze is ook nodig, wordt niet automatich gevonden gezocht.
+        ],
+...
+```
+
+
 # 17. Class-based views, in stead of functions created views
 
 1. In views.py use:
@@ -267,6 +350,8 @@ class HomeView(TemplateView):
 class AuthorizedView(TemplateView)
 ```
   path('authorized_class', views.AuthorizedView.as_view()) 
+
+
 
 # NewStart
 
@@ -298,6 +383,7 @@ class AuthorizedView(TemplateView)
 ```
 path('osbposts/', include('osbposts.urls')), # Dit is nodig om alle URLs die beginnen met 'osbposts' door te sturen naar de osbposts app, en daar alle urlpatterns in de urls.py file in die app...
 ```
+
 # Create a model for a post
 
 In `osbposts` update `models.py`.

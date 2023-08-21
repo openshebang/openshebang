@@ -25,6 +25,12 @@ def posts_all(request):
 def posts_single(request, post_id):
   try: # try and execpt, zodat een nette 404 error wordt gegereneerd.
     singlepost = post.objects.get(id=post_id) # De eerste `id` zit gewoon in de database, in Djano is het kennelijk beter om `pk` voor primary key te gebruiken, echter zit deze NIET in de database.
+    creatie_datum = str(singlepost.created_at)
+    update_datum = str(singlepost.updated_at)
+    if creatie_datum[0:16] == update_datum[0:16]: 
+      post_updated = ''
+    else:
+      post_updated = 'Updated: ' + update_datum[0:16]
   except:
     raise Http404("Post does not exist")      
-  return render(request, 'osbposts/posts_single.html', {'post' : singlepost})
+  return render(request, 'osbposts/posts_single.html', {'post' : singlepost, 'updated_time' : post_updated })

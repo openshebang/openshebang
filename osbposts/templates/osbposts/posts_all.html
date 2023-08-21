@@ -1,12 +1,29 @@
+{% extends 'base.html' %} 
+
+<!-- Je mag niet met een HTML comment beginnen, de 'extends' moet per se bovenaan... -->
+
 <!-- osbposts/posts_all.html -->
 
+
+<!-- {% load static %} # Vertel aan Django dat deze kijkt in de `core/settings.py` file naar STATIC directories. --> -->
+
+{% block content %}
 welcome to posts_all!
 
 
-<ul>
+<ul class="list-group">
 
 {% for post in posts %}
-<li>{{ post.title }}</li>
-{% endfor %}
 
+
+
+    <li class="list-group-item">{{ post.title }}</li>
+    {{ post.text|truncatechars:10}}
+    <a href="/osbposts/posts_single/{{ post.id }}" class="text-dark text-decoration-none"><h3>klik hier!: {{ post.title }}</h3></a>
+{% endfor %}
 </ul>
+
+
+
+
+{% endblock content %}
