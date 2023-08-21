@@ -16,7 +16,7 @@
 <p style="font-size:1.5em;font-style: italic;">Content</p>
 
 
-- [1. Documentation](#1-documentation)
+- [1. Documentation and source code](#1-documentation-and-source-code)
 - [2. Forum](#2-forum)
 - [3. Cheat Sheet](#3-cheat-sheet)
 - [4. Tutorials](#4-tutorials)
@@ -35,11 +35,13 @@
 - [17. Class-based views, in stead of functions created views](#17-class-based-views-in-stead-of-functions-created-views)
 - [NewStart](#newstart)
 - [django-admin startproject my\_name](#django-admin-startproject-my_name)
-- [create class bases view](#create-class-bases-view)
+- [Use function-based views, als most tutorials (even the Djando)](#use-function-based-views-als-most-tutorials-even-the-djando)
 
-# 1. Documentation
+# 1. Documentation and source code
 
 * [Official Django 3.2 documentation](https://docs.djangoproject.com/en/3.2/)
+* [GitHub - Django Essential Training by Leticia Portella](https://github.com/pxrrybella/django-essentials)
+* [GitHub: OpenSheBang, the Python based web application that tends to be the Swiss pocketknife for useful and fun applications.](https://github.com/openshebang/openshebang)
 
 # 2. Forum
 
@@ -108,7 +110,7 @@ def home(request):
   return HttpResponse('Hello World!') 
 ```
 5. The `localhost:8000/home` will give this error: `Using the URLconf defined in smartnotes.urls, Django tried these URL patterns, in this order: admin/ The' current path, home, didn’t match any of these.`
-6. In the global `urls.py` file, import the `apps/views.py` file in the `urls.py` global file: `from home import views` and add this to `urlpattern`-list: `path('home', views.home)` 
+6. In the global `urls.py` file, import the `apps/views.py` file in the `urls.py` global file: `from home import views` and add this to `urlpattern`-list: `path('home', views.home)`. If you enter an URL in the browser that starts with `home`, it will go to the `home` app. Als je een slash invoert na home (dus 'home`/`), dan wordt alles na 'home/' in de URL van je browser doorgevoert naar de specifieke home app en wordt daar verder verwerkt. 
 7. Open `https://localhost:8000`, there you see that `home` URL patterns has been added, so you can open `https://localhost:8000/home`
 
 # 9. Using DTL (Djano Template Language). DTL looks like Jinja2, but it is not.
@@ -276,10 +278,10 @@ class AuthorizedView(TemplateView)
 2. `python3 manage.py startapp obsposts # Posts is plural of the module 'osbpost'`
 3. `mkdir -p osbposts/templates/obsposts`
 
-# create class bases view
+# Use function-based views, als most tutorials (even the Djando)
 
 1. [Class-based views | Django documentation | Django](https://docs.djangoproject.com/en/3.2/topics/class-based-views/)
 2. `mkdir templates`
 3. `echo "Hello from templates/about.html" >> templates/about.html`
-4. In settings.py update for in the TEMPLATES-list, the 'DIRS'-list with `'templates',`, so it will search in the main dir for the `templates` directory.
+4. In settings.py update for in the TEMPLATES-list, the 'DIRS'-list with `'templates',`, so it will search in the main dir for the `templates` directory. Also add there the specific Django Apps.
 

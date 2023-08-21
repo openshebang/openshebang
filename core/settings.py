@@ -60,7 +60,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             'templates', # DDK
-            'osbposts/templates/osbposts', # DDK deze is ook nodig!!!
+            'osbposts/templates/osbposts', # DDK deze is ook nodig, wordt niet automatich gevonden gezocht.
         ],
         'APP_DIRS': True,
         'OPTIONS': {
