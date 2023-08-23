@@ -8,22 +8,25 @@
 <!-- {% load static %} # Vertel aan Django dat deze kijkt in de `core/settings.py` file naar STATIC directories. --> -->
 
 {% block content %}
-welcome to posts_all!
 
+  
+  <div class="row row-cols3 g-2">
+    <h1>Hier zijn alle artikelen:</h1>
 
-<ul class="list-group">
-
-{% for post in posts %}
-
-
-
-    <li class="list-group-item">{{ post.title }}</li>
-    {{ post.text|truncatechars:10}}
-    <a href="/osbposts/posts_single/{{ post.id }}" class="text-dark text-decoration-none"><h3>klik hier!: {{ post.title }}</h3></a>
-{% endfor %}
-</ul>
-
-
-
+    {% for post in posts %}
+        <div class="row">
+          <div class="p-3 border">
+            <h2>{{ post.title }}</h2>
+            <p>
+            {{ post.text|truncatechars:100}}
+            </p>
+            <p>  
+              <!-- <a href="/osbposts/posts_single/{{ post.id }}" class="text-dark text-decoration-none"><button class="btn btn-primary" type="submit">Lees verder...</button></a> -->
+              <a href="{% url 'posts_single' post_id=post.id %}" class="text-dark text-decoration-none"><button class="btn btn-primary" type="submit">Lees verder...</button></a>
+            </p>
+          </div>
+        </div>
+    {% endfor %}
+  </div>
 
 {% endblock content %}

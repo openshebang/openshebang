@@ -2,21 +2,21 @@
 
 {% block content %}
 
-welkome van uit de osbsposts\posts_single
+  <div class="border round">
+    <h1>{{ post.title }}</h1>
 
-De titel is: {{ post.title }}
-<p>
+    <!-- {{ post.id}} -->
+    <!-- {{ post.author }}-->
+    <h5 class="text-secondary">
+    Written by {{ post.author.first_name }} {{ post.author.last_name}} on {{ post.created_at|date:"Y-m-d h:m" }}
+    {% if updated_time %}( geupdate op: {{ post.updated_at|date:"Y-m-d" }} )
+    {% endif %}
+    </h5>
+    <div>
+      {{ post.text }}
+    </div>
+  </div>
 
-</p>
-{{ post.id}}
-{{ post.author }}
-{{ post.created_at }}
-{{ post.updated_at }}
-{{ post.author.first_name }} {{ post.author.last_name}}
-
-{% if updated_time %}
-  {{ updated_time }} 
-{% endif %}
 {% endblock content %}
 
 

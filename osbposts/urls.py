@@ -11,5 +11,3 @@ urlpatterns = [
     path('posts_all', views.posts_all, name="posts_all"),
     path('posts_single/<int:post_id>/', views.posts_single, name='posts_single'),
 ]
-
-

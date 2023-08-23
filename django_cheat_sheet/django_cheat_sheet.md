@@ -42,6 +42,7 @@
 - [Create a model for a post](#create-a-model-for-a-post)
 - [Maak model zichtbaar in de Django Admin](#maak-model-zichtbaar-in-de-django-admin)
 - [Model](#model)
+- [requirements.txt](#requirementstxt)
 
 # 1. Documentation and source code
 
@@ -432,3 +433,8 @@ note "Model 'post' for 'osbposts'-app"
     +ForeignKey settings.AUTH_USER_MODEL, on_delete=models.CASCADE author
   }
 ```
+
+# requirements.txt
+
+1. To import python packages from a `requirements`-file: `pip install -r requirements.txt`
+
