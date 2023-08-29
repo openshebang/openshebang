@@ -1,0 +1,73 @@
+{% extends 'base.html' %} 
+
+<!-- Je mag niet met een HTML comment beginnen, de 'extends' moet per se bovenaan... -->
+
+<!-- osbposts/posts_all.html -->
+
+
+<!-- {% load static %} # Vertel aan Django dat deze kijkt in de `core/settings.py` file naar STATIC directories. --> -->
+
+{% block content %}
+
+<main>
+
+{% load static %} <!-- hey er zijn wat static files, namelijk het logo, die staan dus in de ROOT_DIR onder 'static', het kan zijn dat deze al in 'base.html' zit -->
+
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <img src="{% static 'png/logo_osb_cases.png' %}">
+        <p class="lead text-body-secondary">OSBcases shows cases you want to display. This Django app is part of the OpenSheBang project.</p>
+   
+        <p>
+          <a href="mailto:johndoe@example.com" class="btn btn-primary my-2">Email me</a>
+          <a href="https://www.linkedin.com/in/john-doe-889b32242/" class="btn btn-secondary my-2">LinkedIn of John Doe</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="album py-5 bg-body-tertiary">
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+
+
+
+        <!-- Dit is een BS 'card' of 'case' -->
+        {% for case in cases.all %}
+        <!-- {{ case.image }} # Will only show 'user_uploads/fox.jpg '--> 
+        <!-- {{ case.image.url }} # Will show '/media/user_uploads/fox.jpg' -->
+        <div class="col">
+        <a href="{% url 'osb_single' case.id %}">
+          <div class="card shadow-sm">
+            <!--
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+            -->
+            <img class="card-img-top" src="{{ case.image.url }}"> <!-- alleen de `card.image` is niet genoeg, je moet de .url toevoegen -->
+            <div class="card-body">
+              <p class="card-text">{{ case.summary }}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <!--
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                </div>
+                <small class="text-body-secondary">9 mins</small>
+            -->
+              </div>
+            </div>
+          </div>
+        </a>
+        </div>
+        {% endfor %}
+        <!-- Dit is een 'kaart' of 'case' -->
+       
+      </div>
+    </div>
+  </div>
+
+</main>
+
+{% endblock content %}
