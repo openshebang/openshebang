@@ -1,12 +1,7 @@
-<html>
-    <head>
-    {% if title %}
-        <title>{{ title }}</title>
-    {% else %}
-        <title>Welkome to OSB!</title>
-    {% endif %}
-        </head>
-    <body>
+{% extends 'base.html' %}
+
+
+{% block content %}
         <h1> Hi , {{ user.username }}</h1> <!-- the user is the variable, the username is from the dict-->
 
 
@@ -17,20 +12,4 @@
         </p>
         </div>
         {% endfor %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    </body>
-</html>
+{% endblock content %} 

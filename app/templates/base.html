@@ -1,0 +1,13 @@
+<html>
+    <head>
+    {% if title %}
+        <title>{{ title }}</title>
+    {% else %}
+        <title>Welkome to OSB!</title>
+    {% endif %}
+        </head>
+    <body>
+        <div>OSB: <a href="/index">Home</a><div>
+        {% block content %}{% endblock content %}
+    </body>
+</html>
