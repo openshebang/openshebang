@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Sign in</h1>
+    <form action="" method="post"> <!-- The actions is the URL where the form is, as this is empty it is the current file, -->
+        {{ form.hidden_tag() }} <!-- This is for the CSRF token -->
+        <p> {{ form.username.label }}</p>
+        <p> {{ form.username(size=32) }} </p>
+        {% for error in form.username.errors %}
+        <span style="color: red;">[{{ error }}]</span> <!-- This is for the validation in forms.py DataRequired() -->
+        {% endfor %}
+        <p> {{ form.password.label }} </p>
+        <p> {{ form.password(size=32)}}    </p>
+        {% for error in form.password.errors %}
+        <span style="color: red;">[{{ error }}]</span> <!-- This is for the validation in forms.py DataRequired() -->
+        {% endfor %}
+        <p> {{ form.remember_me() }} {{ form.remember_me.label }}</p>
+        <p> {{ form.submit() }}</p> <!-- You don't have to specify the label, as this will be incorporated in the button -->
+    </form>
+{% endblock content %}
+
+
