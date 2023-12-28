@@ -8,5 +8,29 @@
         </head>
     <body>
         <h1> Hi , {{ user.username }}</h1> <!-- the user is the variable, the username is from the dict-->
+
+
+        {% for post in posts %}
+        <div><p>
+            {{ post.author.username }} says: 
+            <b>{{ post.body }}</b>
+        </p>
+        </div>
+        {% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </body>
 </html>
