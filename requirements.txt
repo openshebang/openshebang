@@ -1,0 +1,15 @@
+blinker==1.7.0
+click==8.1.7
+coverage==7.4.0
+exceptiongroup==1.2.0
+Flask==3.0.0
+-e git+https://github.com/openshebang/openshebang.git@e1e2dcb53b397bde069a91289e1bd60b07ece24a#egg=flaskr
+iniconfig==2.0.0
+itsdangerous==2.1.2
+Jinja2==3.1.2
+MarkupSafe==2.1.3
+packaging==23.2
+pluggy==1.3.0
+pytest==7.4.4
+tomli==2.0.1
+Werkzeug==3.0.1
