@@ -3,7 +3,8 @@ click==8.1.7
 coverage==7.4.0
 exceptiongroup==1.2.0
 Flask==3.0.0
--e git+https://github.com/openshebang/openshebang.git@e1e2dcb53b397bde069a91289e1bd60b07ece24a#egg=flaskr
+-e git+https://github.com/openshebang/openshebang.git@4aa67462541fb2fcde4b8e2dc61469fa1f46aaf5#egg=flaskr
+gunicorn==21.2.0
 iniconfig==2.0.0
 itsdangerous==2.1.2
 Jinja2==3.1.2
