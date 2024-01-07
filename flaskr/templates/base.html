@@ -1,13 +1,14 @@
 <!doctype html>
-<title>{% block title %}{% endblock %} - Flaskr</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-<nav>
-  <h1>Flaskr</h1>
+<title>{% block title %}{% endblock %} - {{ config['WEBSITE_NAME'] }}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-5.3.2-dist/css/bootstrap.css') }}">
+<nav class="navbar bg-primary" data-bs-theme="dark">
+  <h1 class="text-white">{{ config['WEBSITE_NAME'] }}</h1>
   <ul>
     {% if g.user %}
       <li><span>{{ g.user['username'] }}</span>
       <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
-    {% else %}
+    {% endif %}
+    {% if config['SHOW_REGISTER_AND_LOG_IN'] %}  
       <li><a href="{{ url_for('auth.register') }}">Register</a>
       <li><a href="{{ url_for('auth.login') }}">Log In</a>
     {% endif %}
