@@ -10,7 +10,7 @@
 {% block content %}
   {% for post in posts %}
     <article class="post">
-      <div class="card text-center" style="width: 100%;"> <!-- 'width' was '18rem', nu '100%' -->
+      <div class="card" style="width: 100%;"> <!-- 'width' was '18rem', nu '100%' -->
         <div class="card-body">
         <header>
           
@@ -22,7 +22,7 @@
             <a class="action" href="{{ url_for('blog.update', id=post['id']) }}">Edit</a>
           {% endif %}
         </header>
-        <p class="card-text">{{ post['body'] }}</p>
+        <p class="font-monospace">{{ post['body'] }}</p>
         </div>
       </div>
     </article>
