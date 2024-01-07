@@ -11,7 +11,7 @@
   {% for post in posts %}
     <article class="post">
       <div class="card" style="width: 100%;"> <!-- 'width' was '18rem', nu '100%' -->
-        <div class="card-body">
+        <div class="card-body ">
         <header>
           
           <h5 div class="card-title fw-bolder">{{ post['title'] }}</h5>
@@ -22,7 +22,7 @@
             <a class="action" href="{{ url_for('blog.update', id=post['id']) }}">Edit</a>
           {% endif %}
         </header>
-        <p class="font-monospace">{{ post['body'] }}</p>
+        <pre>{{ post['body'] }}</pre>
         </div>
       </div>
     </article>
