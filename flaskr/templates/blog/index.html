@@ -22,7 +22,7 @@
             <a class="action" href="{{ url_for('blog.update', id=post['id']) }}">Edit</a>
           {% endif %}
         </header>
-        <pre>{{ post['body'] }}</pre>
+        <pre style="white-space: pre-line;">{{ post['body'] }}</pre> <!-- De inline CSS met 'style' is een tijdelijke fix -->
         </div>
       </div>
     </article>
